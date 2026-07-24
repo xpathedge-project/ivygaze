@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors from the Ivy Gaze design system */
+  --color-ivy-green: #385722; /* IVY Green (Primary) */
+  --color-ivy-green-dark: #163301; /* IVY Green (Secondary 5) */
+  --color-ivy-green-deep: #193d00; /* IVY Green (Secondary 4) */
+  --color-ivy-green-muted: #5b7d5a; /* muted sage green cards */
+  --color-ivy-cream: #f5f2eb; /* IVY Warm Off-White */
+  --color-ivy-gold: #d4a843; /* IVY Gold */
+  --color-ivy-book: #265901; /* Hero primary button green */
+  --color-ink: #000502; /* Neutral Darkest */
+
+  /* Typography */
+  --font-heading: "Montserrat", system-ui, sans-serif;
+  --font-body: "Lato", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Heading sizes */
+  --text-h1: 56px;
+  --text-h2: 48px;
+  --text-h3: 40px;
+  --text-h5: 24px;
+  --text-h6: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared button surface treatments to echo the Figma inset highlights */
+.btn-primary-inset {
+  box-shadow:
+    inset 0 32px 24px 0 rgba(255, 255, 255, 0.05),
+    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-soft-inset {
+  box-shadow: inset 0 -2px 1px 0 rgba(0, 5, 2, 0.05);
+}
