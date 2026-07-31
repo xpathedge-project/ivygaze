@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import iconFacebook from '../assets/icons/social-facebook.svg'
 import iconInstagram from '../assets/icons/social-instagram.svg'
 import iconX from '../assets/icons/social-x.svg'
@@ -10,7 +11,12 @@ const SERVICE_LINKS = [
   'Grounds Maintenance',
   'Workforce Solutions',
 ]
-const COMPANY_LINKS = ['About Us', 'Portfolio', 'Book Us', 'Contact']
+const COMPANY_LINKS = [
+  { label: 'About Us', to: '/about' },
+  { label: 'Portfolio', to: '/#projects' },
+  { label: 'Book Us', to: '/#contact' },
+  { label: 'Contact', to: '/#contact' },
+]
 const SOCIAL_LINKS = [
   { label: 'Facebook', icon: iconFacebook },
   { label: 'Instagram', icon: iconInstagram },
@@ -18,21 +24,30 @@ const SOCIAL_LINKS = [
 ]
 const LEGAL_LINKS = ['Privacy Policy', 'Terms of Service', 'Cookies Settings']
 
+// Links are either plain labels (not yet routed) or { label, to } pairs.
 function LinkColumn({ title, links }) {
   return (
     <div className="flex flex-col gap-4">
       <p className="font-sans text-base font-semibold text-ink">{title}</p>
       <ul className="flex flex-col">
-        {links.map((l) => (
-          <li key={l}>
-            <a
-              href="#"
-              className="block py-2 font-sans text-sm text-ink transition-opacity hover:opacity-70"
-            >
-              {l}
-            </a>
-          </li>
-        ))}
+        {links.map((l) => {
+          const { label, to } = typeof l === 'string' ? { label: l } : l
+          const className =
+            'block py-2 font-sans text-sm text-ink transition-opacity hover:opacity-70'
+          return (
+            <li key={label}>
+              {to ? (
+                <Link to={to} className={className}>
+                  {label}
+                </Link>
+              ) : (
+                <a href="#" className={className}>
+                  {label}
+                </a>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

@@ -1,44 +1,50 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logoWhite from '../assets/images/logo-white.png'
 import Button from './Button'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Project', href: '#projects' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/#services' },
+  { label: 'Project', to: '/#projects' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { pathname, hash } = useLocation()
+  const current = `${pathname}${hash}`
 
   return (
     <header className="sticky top-0 z-50 bg-ivy-green">
       <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-6 md:px-16">
         {/* Logo */}
-        <a href="#home" className="flex shrink-0 items-center">
+        <Link to="/" className="flex shrink-0 items-center">
           <img
             src={logoWhite}
             alt="Ivy Gaze"
             className="h-10 w-auto object-contain"
           />
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 lg:flex">
           <ul className="flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="font-sans text-base text-white/90 transition-colors hover:text-white"
+                <Link
+                  to={link.to}
+                  aria-current={current === link.to ? 'page' : undefined}
+                  className={`font-sans text-base transition-colors hover:text-white ${
+                    current === link.to ? 'text-white' : 'text-white/90'
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Button as="a" href="#contact" variant="cream">
+          <Button as={Link} to="/#contact" variant="cream">
             Contact us
           </Button>
         </div>
@@ -61,17 +67,24 @@ export default function Navbar() {
           <ul className="flex flex-col gap-1 py-2">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.to}
                   onClick={() => setOpen(false)}
+                  aria-current={current === link.to ? 'page' : undefined}
                   className="block py-3 font-sans text-base text-white/90"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Button as="a" href="#contact" variant="cream" className="w-full">
+          <Button
+            as={Link}
+            to="/#contact"
+            variant="cream"
+            className="w-full"
+            onClick={() => setOpen(false)}
+          >
             Contact us
           </Button>
         </div>
