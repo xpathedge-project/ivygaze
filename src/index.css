@@ -5,7 +5,9 @@
   --color-ivy-green: #385722; /* IVY Green (Primary) */
   --color-ivy-green-dark: #163301; /* IVY Green (Secondary 5) */
   --color-ivy-green-deep: #193d00; /* IVY Green (Secondary 4) */
+  --color-ivy-green-darkest: #0e2400; /* IVY Green (Secondary 6) — sub-service pages */
   --color-ivy-green-muted: #5b7d5a; /* muted sage green cards */
+  --color-ivy-black: #2d2d2d; /* IVY Black — section titles */
   --color-ivy-cream: #f5f2eb; /* IVY Warm Off-White */
   --color-ivy-gold: #d4a843; /* IVY Gold */
   --color-ivy-book: #265901; /* Hero primary button green */
@@ -20,6 +22,7 @@
   --text-h1: 56px;
   --text-h2: 48px;
   --text-h3: 40px;
+  --text-h4: 32px;
   --text-h5: 24px;
   --text-h6: 20px;
 }

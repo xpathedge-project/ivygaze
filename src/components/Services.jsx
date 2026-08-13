@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useContent } from '../context/RegionContext'
 import Button from './Button'
 
 const TABS = [
@@ -6,31 +8,37 @@ const TABS = [
     tab: 'Property care for every building',
     heading: 'Cleaning and inspections that protect',
     text: 'Cleaning, maintenance, and inspections that protect your investment.',
+    to: '/services/property-care',
   },
   {
     tab: 'Facility management at scale',
     heading: 'Operations that run without friction',
     text: 'End-to-end facility operations, maintenance, and vendor coordination handled by one accountable team.',
+    to: '/services/facility-management',
   },
   {
     tab: 'Environmental services that matter',
     heading: 'Sustainable care for healthier spaces',
     text: 'Responsible environmental services that keep your properties clean, safe, and compliant.',
+    to: '/services/environmental-services',
   },
   {
     tab: 'Waste management done right',
     heading: 'Waste handled responsibly, every time',
     text: 'Reliable collection, disposal, and recycling programs tailored to your site and schedule.',
+    to: '/services/waste-management',
   },
   {
     tab: 'Grounds maintenance with precision',
     heading: 'Landscapes that make an impression',
     text: 'Precision grounds keeping that keeps every exterior polished, green, and welcoming.',
+    to: '/services/grounds-maintenance',
   },
 ]
 
 export default function Services() {
   const [active, setActive] = useState(0)
+  const { homeServices } = useContent()
   const pane = TABS[active]
 
   return (
@@ -44,8 +52,7 @@ export default function Services() {
               Six services under one roof
             </h2>
             <p className="font-body text-lg leading-[1.5] text-ink">
-              Property care, facility management, environmental services, waste
-              management, grounds maintenance, and workforce solutions.
+              {homeServices.body}
             </p>
           </div>
         </div>
@@ -99,7 +106,7 @@ export default function Services() {
               <p className="font-body text-base leading-[1.5]">{pane.text}</p>
             </div>
             <div>
-              <Button as="a" href="#contact" variant="green">
+              <Button as={Link} to={pane.to} variant="green">
                 Explore
               </Button>
             </div>

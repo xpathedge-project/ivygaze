@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoWhite from '../assets/images/logo-white.png'
 import Button from './Button'
+import RegionSwitcher from './RegionSwitcher'
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Services', to: '/#services' },
+  { label: 'Services', to: '/services' },
   { label: 'Project', to: '/#projects' },
 ]
 
@@ -44,7 +45,8 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <Button as={Link} to="/#contact" variant="cream">
+          <RegionSwitcher />
+          <Button as={Link} to="/contact" variant="cream">
             Contact us
           </Button>
         </div>
@@ -78,9 +80,10 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <RegionSwitcher className="mb-3" />
           <Button
             as={Link}
-            to="/#contact"
+            to="/contact"
             variant="cream"
             className="w-full"
             onClick={() => setOpen(false)}

@@ -5,17 +5,17 @@ import iconInstagram from '../assets/icons/social-instagram.svg'
 import iconX from '../assets/icons/social-x.svg'
 
 const SERVICE_LINKS = [
-  'Property Care',
-  'Facility Management',
-  'Environmental Services',
-  'Grounds Maintenance',
-  'Workforce Solutions',
+  { label: 'Property Care', to: '/services/property-care' },
+  { label: 'Facility Management', to: '/services/facility-management' },
+  { label: 'Environmental Services', to: '/services/environmental-services' },
+  { label: 'Grounds Maintenance', to: '/services/grounds-maintenance' },
+  { label: 'Workforce Solutions', to: '/services/workforce-solutions' },
 ]
 const COMPANY_LINKS = [
   { label: 'About Us', to: '/about' },
   { label: 'Portfolio', to: '/#projects' },
-  { label: 'Book Us', to: '/#contact' },
-  { label: 'Contact', to: '/#contact' },
+  { label: 'Book Us', to: '/contact' },
+  { label: 'Contact', to: '/contact' },
 ]
 const SOCIAL_LINKS = [
   { label: 'Facebook', icon: iconFacebook },
