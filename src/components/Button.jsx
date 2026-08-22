@@ -33,14 +33,16 @@ export default function Button({
   )
 }
 
-// A borderless text link with a trailing chevron ("Explore ›")
-export function TextLink({ children, className = '', ...props }) {
+// A borderless text link with a trailing chevron ("Explore ›"). Defaults to a
+// <button>; pass `as={Link}` (or `as="a"`) when it should navigate.
+export function TextLink({ children, as = 'button', className = '', ...props }) {
+  const Tag = as
   return (
-    <button
+    <Tag
       className={`inline-flex items-center gap-2 font-sans text-base font-medium leading-normal transition-opacity duration-200 hover:opacity-70 cursor-pointer ${className}`}
       {...props}
     >
       {children}
-    </button>
+    </Tag>
   )
 }

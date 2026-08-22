@@ -1,9 +1,14 @@
+import { Link } from 'react-router-dom'
 import { useContent } from '../context/RegionContext'
 import Button, { TextLink } from './Button'
 import { ChevronRight } from './Icons'
 
 export default function Stats() {
   const { stats } = useContent()
+  // The grid is two-up, so an odd number of stats would leave a half-width
+  // card stranded on the last row. The Figma layout instead stretches that
+  // final card across both columns, which is what this flag drives.
+  const stretchLast = stats.items.length % 2 === 1
 
   return (
     <section id="about" className="bg-white px-6 py-16 md:px-16 md:py-28">
@@ -20,10 +25,10 @@ export default function Stats() {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <Button as="a" href="#projects" variant="cream">
+            <Button as={Link} to="/portfolio" variant="cream">
               View our work
             </Button>
-            <TextLink className="text-ink">
+            <TextLink as={Link} to="/services" className="text-ink">
               Explore
               <ChevronRight size={24} />
             </TextLink>
@@ -32,10 +37,14 @@ export default function Stats() {
 
         {/* Stat grid */}
         <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:flex-1">
-          {stats.items.map((s) => (
+          {stats.items.map((s, i) => (
             <div
               key={s.label}
-              className="flex flex-col gap-3 border border-ink/15 bg-ivy-cream p-8"
+              className={`flex flex-col gap-3 border border-ink/15 bg-ivy-cream p-8 ${
+                stretchLast && i === stats.items.length - 1
+                  ? 'sm:col-span-2'
+                  : ''
+              }`}
             >
               <p className="text-right font-sans text-h6 leading-[1.4] tracking-[-0.01em] text-ink">
                 {s.label}

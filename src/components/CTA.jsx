@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Button from './Button'
 
 export default function CTA({
@@ -16,10 +17,10 @@ export default function CTA({
           <p className="font-sans text-lg leading-[1.5]">{text}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button as="a" href="#contact" variant="green">
+          <Button as={Link} to="/contact" variant="green">
             {primaryLabel}
           </Button>
-          <Button as="a" href="#contact" variant="cream">
+          <Button as={Link} to="/contact" variant="cream">
             {secondaryLabel}
           </Button>
         </div>

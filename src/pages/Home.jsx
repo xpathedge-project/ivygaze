@@ -13,8 +13,8 @@ export default function Home() {
       <Services />
       <Stats />
       <TwoMarkets />
-      <Partner />
       <Testimonials />
+      <Partner />
       <CTA />
     </main>
   )

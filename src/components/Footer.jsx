@@ -13,9 +13,10 @@ const SERVICE_LINKS = [
 ]
 const COMPANY_LINKS = [
   { label: 'About Us', to: '/about' },
-  { label: 'Portfolio', to: '/#projects' },
+  { label: 'Portfolio', to: '/portfolio' },
   { label: 'Book Us', to: '/contact' },
   { label: 'Contact', to: '/contact' },
+  'Certifications',
 ]
 const SOCIAL_LINKS = [
   { label: 'Facebook', icon: iconFacebook },

@@ -8,13 +8,19 @@ const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Services', to: '/services' },
-  { label: 'Project', to: '/#projects' },
+  { label: 'Project', to: '/portfolio' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { pathname, hash } = useLocation()
   const current = `${pathname}${hash}`
+
+  // Detail routes (/services/janitorial, /portfolio/city-of-dallas) should keep
+  // their parent nav item lit, so match on the path prefix for everything but
+  // "/", which would otherwise match every page.
+  const isCurrent = (to) =>
+    to === '/' ? current === '/' : pathname === to || pathname.startsWith(`${to}/`)
 
   return (
     <header className="sticky top-0 z-50 bg-ivy-green">
@@ -35,9 +41,9 @@ export default function Navbar() {
               <li key={link.label}>
                 <Link
                   to={link.to}
-                  aria-current={current === link.to ? 'page' : undefined}
+                  aria-current={isCurrent(link.to) ? 'page' : undefined}
                   className={`font-sans text-base transition-colors hover:text-white ${
-                    current === link.to ? 'text-white' : 'text-white/90'
+                    isCurrent(link.to) ? 'text-white' : 'text-white/90'
                   }`}
                 >
                   {link.label}
@@ -72,7 +78,7 @@ export default function Navbar() {
                 <Link
                   to={link.to}
                   onClick={() => setOpen(false)}
-                  aria-current={current === link.to ? 'page' : undefined}
+                  aria-current={isCurrent(link.to) ? 'page' : undefined}
                   className="block py-3 font-sans text-base text-white/90"
                 >
                   {link.label}

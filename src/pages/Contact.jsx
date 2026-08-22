@@ -239,29 +239,40 @@ function TimelineIntro() {
 
 // ---------------------------------------------------------------------------
 
-function CoverageColumn({ column }) {
+// One market in the "Where we serve" comparison: headline facts on the left,
+// the service-line checklist on the right. The 469/523 split and the 32px
+// gutter come straight from the Figma frame; the two panels are equal height
+// so the pair reads as a single band.
+function CoverageBlock({ column }) {
   return (
-    <div className="flex flex-col gap-8 bg-ivy-cream p-8">
-      <dl className="flex flex-col">
-        {column.rows.map(([label, value]) => (
-          <div
-            key={label}
-            className="flex items-center justify-between gap-4 border-b border-ink/15 py-3 first:border-t"
-          >
-            <dt className="font-body text-sm text-ink">{label}</dt>
-            <dd className="font-body text-sm text-ink">{value}</dd>
+    <section
+      aria-label={column.regionName}
+      className="grid w-full grid-cols-1 gap-8 lg:grid-cols-[469fr_523fr]"
+    >
+      <dl className="flex flex-col justify-start gap-[22px] bg-ivy-cream p-8">
+        {column.stats.map(([label, value]) => (
+          <div key={label} className="flex flex-col gap-[7px]">
+            <dt className="font-body text-sm leading-[1.5] text-ink">
+              {label}
+            </dt>
+            <dd className="font-heading text-2xl leading-[1.25] font-semibold tracking-[-0.01em] text-ivy-green-dark">
+              {value}
+            </dd>
           </div>
         ))}
       </dl>
-      <ul className="flex flex-col gap-2">
+
+      <ul className="flex flex-col justify-start gap-[15px] bg-ivy-cream p-8">
         {column.items.map((item) => (
-          <li key={item} className="flex items-center gap-3">
-            <Check size={20} className="shrink-0 text-ink" />
-            <span className="font-body text-sm text-ink">{item}</span>
+          <li key={item} className="flex items-start gap-3">
+            <Check size={20} className="mt-0.5 shrink-0 text-ivy-green" />
+            <span className="font-body text-base leading-[1.5] text-ink">
+              {item}
+            </span>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
 
@@ -376,9 +387,11 @@ export default function Contact() {
               <p className="font-body text-lg leading-[1.5]">{COVERAGE.body}</p>
             </div>
           </div>
-          <div className="grid w-full max-w-[1120px] grid-cols-1 gap-px bg-ink/15 md:grid-cols-2">
+          {/* The two markets stack rather than sit side by side — the Figma
+              frame gives each one a full-width band 80px apart. */}
+          <div className="flex w-full max-w-[1024px] flex-col gap-8 lg:gap-20">
             {COVERAGE.columns.map((column) => (
-              <CoverageColumn key={column.region} column={column} />
+              <CoverageBlock key={column.region} column={column} />
             ))}
           </div>
         </div>

@@ -12,11 +12,16 @@
 // ---------------------------------------------------------------------------
 
 import cardPropertyCare from "../assets/images/services/property-care.png";
+import cardPropertyCare2 from "../assets/images/services/propcare.jpg";
 import cardFacility from "../assets/images/services/facility-management.png";
+import cardFacility2 from "../assets/images/services/facmanage.jpg";
 import cardEnvironmental from "../assets/images/services/environmental-services.png";
+import cardEnvironmental2 from "../assets/images/services/envservice.jpg";
 import cardWaste from "../assets/images/services/waste-management.png";
 import cardGrounds from "../assets/images/services/grounds-maintenance.png";
+import cardGrounds2 from "../assets/images/services/grndmntnce.jpg";
 import cardWorkforce from "../assets/images/services/workforce-solutions.png";
+import cardWorkforce2 from "../assets/images/services/wrkfrce.jpg";
 
 import subPropertyCare1 from "../assets/images/subservices/property-care-1.png";
 import subPropertyCare2 from "../assets/images/subservices/property-care-2.png";
@@ -28,6 +33,13 @@ import subWaste1 from "../assets/images/subservices/waste-management-1.png";
 import subWaste2 from "../assets/images/subservices/waste-management-2.png";
 import subGrounds1 from "../assets/images/subservices/grounds-maintenance-1.png";
 import subGrounds2 from "../assets/images/subservices/grounds-maintenance-2.png";
+
+import work1 from "../assets/images/portfolio/work-1.png";
+import work2 from "../assets/images/portfolio/work-2.png";
+import work3 from "../assets/images/portfolio/work-3.png";
+import projectDallas from "../assets/images/portfolio/city-of-dallas.png";
+import projectDallas1 from "../assets/images/portfolio/city-of-dallas-1.png";
+import projectDallas2 from "../assets/images/portfolio/city-of-dallas-2.png";
 
 // Slugs, order and imagery are the same in both markets, so they live outside
 // the region blocks. SERVICE_ORDER drives the six-card grid on /services.
@@ -42,17 +54,17 @@ export const SERVICE_ORDER = [
 
 export const SERVICE_MEDIA = {
   "property-care": {
-    card: cardPropertyCare,
-    cardAlt: "Freshly cleaned bathroom in a maintained residence",
+    card: cardPropertyCare2,
+    cardAlt: "Freshly cleaned bedroom in a maintained residence",
     gallery: [subPropertyCare1, subPropertyCare2],
   },
   "facility-management": {
-    card: cardFacility,
+    card: cardFacility2,
     cardAlt: "Facility manager reviewing a site inspection on a tablet",
     gallery: [subFacility1, subFacility2],
   },
   "environmental-services": {
-    card: cardEnvironmental,
+    card: cardEnvironmental2,
     cardAlt: "Grounds crew bagging garden waste",
     gallery: [subEnvironmental1, subEnvironmental2],
   },
@@ -62,19 +74,101 @@ export const SERVICE_MEDIA = {
     gallery: [subWaste1, subWaste2],
   },
   "grounds-maintenance": {
-    card: cardGrounds,
+    card: cardGrounds2,
     cardAlt: "Landscaped grounds along a property boundary",
     gallery: [subGrounds1, subGrounds2],
   },
   "workforce-solutions": {
-    card: cardWorkforce,
+    card: cardWorkforce2,
     cardAlt: "Site crew in safety gear working together",
     gallery: [subFacility1, subGrounds1],
   },
 };
 
-// Shared across both markets — the "Where we serve" table is a side-by-side
-// comparison of the two, so it is intentionally not region-switched.
+// ---------------------------------------------------------------------------
+// Portfolio — the "Project" entry in the navbar. Case studies are the same in
+// both markets (they are a record of work done, not a regional offer), so this
+// sits outside the region blocks.
+//
+// A project renders as: green header, title, the `facts` table, then `blocks`
+// in order. A block is either prose or a carousel, which is what lets the
+// Figma layout alternate text → gallery → text → gallery.
+// ---------------------------------------------------------------------------
+export const PORTFOLIO = {
+  heroHeading: "Properties we've protected",
+  heroBody:
+    "From government facilities to diaspora homes, we've earned trust across markets.",
+  workHeading: "Our work",
+  workBody:
+    "Explore a selection of projects that reflect our commitment to quality, reliability, and long-term property care.",
+
+  // Top-of-page carousel on /portfolio.
+  gallery: [
+    { src: work1, alt: "Stairwell and living area of a maintained residence" },
+    { src: work2, alt: "Interior of a property under Ivy Gaze care" },
+    { src: work3, alt: "Commercial site serviced by an Ivy Gaze crew" },
+  ],
+
+  projects: [
+    {
+      slug: "city-of-dallas",
+      title:
+        "City of Dallas – Full Janitorial Services and Facilities Maintenance",
+      image: projectDallas,
+      imageAlt:
+        "Ivy Gaze crew cleaning vents, floors and fixtures in a municipal facility",
+      facts: [
+        [
+          "Project Type",
+          "Full Janitorial Services, Facilities Maintenance, Cleaning Support, and Waste Handling",
+        ],
+        ["Client", "City of Dallas / Dallas Water Utilities"],
+      ],
+      blocks: [
+        {
+          type: "text",
+          heading: "Challenge",
+          body: "The City of Dallas required dependable janitorial and facilities maintenance support for active municipal work environments. The scope required consistent cleaning, proper waste handling, attention to detail, schedule adherence, and the ability to maintain clean, safe, and functional spaces without interrupting daily operations.",
+        },
+        {
+          type: "gallery",
+          images: [
+            {
+              src: projectDallas1,
+              alt: "Ivy Gaze crew servicing a municipal facility",
+            },
+          ],
+        },
+        {
+          // TODO(copy): the Figma frame shows the "Solution" label with no body
+          // text beneath it. Empty blocks are skipped at render time — drop the
+          // real copy in here when the client supplies it.
+          type: "text",
+          heading: "Solution",
+          body: "",
+        },
+        {
+          type: "gallery",
+          images: [
+            {
+              src: projectDallas2,
+              alt: "Completed facilities maintenance work on the Dallas contract",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+// Shared across both markets — "Where we serve" shows the two side by side, so
+// it is intentionally not region-switched.
+//
+// Each entry renders as one block: a panel of headline facts on the left and
+// the service-line checklist on the right. The Figma frame stacks the two
+// blocks vertically and shows exactly two facts per market, so `stats` is
+// deliberately a pair — the service-line count that used to sit here is left
+// out because the list beside it already states it.
 export const COVERAGE = {
   tagline: "Coverage",
   heading: "Where we serve",
@@ -82,10 +176,10 @@ export const COVERAGE = {
   columns: [
     {
       region: "us",
-      rows: [
+      regionName: "United States",
+      stats: [
         ["Primary Market", "Texas"],
         ["Service Coverage", "DFW & Surrounding Areas"],
-        ["Service lines", "6"],
       ],
       items: [
         "Janitorial & Commercial Cleaning",
@@ -98,10 +192,10 @@ export const COVERAGE = {
     },
     {
       region: "ng",
-      rows: [
+      regionName: "Nigeria",
+      stats: [
         ["Initial Market", "Lagos & Ogun"],
         ["Expansion", "Nation Wide"],
-        ["Service lines", "5"],
       ],
       items: [
         "Facility & Property Care",
@@ -201,12 +295,6 @@ export const CONTENT = {
           label: "Client retention rate",
           value: "97%",
           note: "Long-term partnerships built on performance.",
-        },
-        {
-          label:
-            "Technology-Enabled Inspections, Reporting & Quality Assurance",
-          value: "10K+",
-          note: "Real-time transparency and accountability.",
         },
       ],
     },
@@ -493,12 +581,6 @@ export const CONTENT = {
           label: "Client retention rate",
           value: "97%",
           note: "Long-term partnerships built on performance.",
-        },
-        {
-          label:
-            "Technology-Enabled Inspections, Reporting & Quality Assurance",
-          value: "10K+",
-          note: "Real-time transparency for owners abroad.",
         },
       ],
     },

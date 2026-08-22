@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
-import servicesHero from '../assets/images/services/hero-highfive.png'
-import ServiceCTA from '../components/ServiceCTA'
-import { ChevronRight } from '../components/Icons'
-import { SERVICE_MEDIA, SERVICE_ORDER } from '../content/content'
-import { useContent } from '../context/RegionContext'
+import { Link } from "react-router-dom";
+import servicesHero from "../assets/images/services/serviceheader.png";
+import PageHeader from "../components/PageHeader";
+import ServiceCTA from "../components/ServiceCTA";
+import { ChevronRight } from "../components/Icons";
+import { SERVICE_MEDIA, SERVICE_ORDER } from "../content/content";
+import { useContent } from "../context/RegionContext";
 
 function ServiceCard({ slug, service, media }) {
   return (
@@ -23,36 +24,28 @@ function ServiceCard({ slug, service, media }) {
           <ChevronRight size={16} />
         </Link>
       </div>
-      {/* The Figma frame stretches these photos into a near-square slot. We
-          keep the aspect ratio instead and use a 4:3 band, which is close to
-          the source ratios so the whole scene stays readable. */}
       <img
         src={media.card}
         alt={media.cardAlt}
-        className="aspect-[4/3] w-full shrink-0 object-cover"
+        className="aspect-4/3 w-full shrink-0 object-cover"
       />
     </article>
-  )
+  );
 }
 
 export default function ServicesPage() {
-  const { servicesPage, servicesCta, services } = useContent()
+  const { servicesPage, servicesCta, services } = useContent();
 
   return (
     <main>
       {/* Green header */}
-      <section className="bg-ivy-green px-6 pt-20 pb-28 md:px-16 md:pt-[114px] md:pb-[238px]">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center">
-          <div className="flex max-w-[768px] flex-col items-center gap-6 text-center text-white">
-            <h1 className="max-w-[566px] font-heading text-[32px] font-medium leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-              {servicesPage.heroHeading}
-            </h1>
-            <p className="max-w-[522px] font-body text-lg leading-[1.5]">
-              {servicesPage.heroBody}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        heading={servicesPage.heroHeading}
+        body={servicesPage.heroBody}
+        className="pt-20 pb-28 md:pt-[114px] md:pb-[238px]"
+        headingClassName="max-w-[566px]"
+        bodyClassName="max-w-[522px]"
+      />
 
       {/* "What we do for you" + full-bleed card image */}
       <section className="bg-white px-6 pt-20 pb-16 md:px-16 md:pt-[137px] md:pb-28">
@@ -72,8 +65,8 @@ export default function ServicesPage() {
           </div>
           <img
             src={servicesHero}
-            alt="Ivy Gaze team members celebrating a completed contract"
-            className="h-[240px] w-full border border-ink/15 object-cover object-[50%_42%] sm:h-[340px] lg:h-[448px]"
+            alt="Ivy Gaze supervisor briefing a team at a site orientation"
+            className="h-60 w-full border border-ink/15 object-cover object-[50%_25%] sm:h-45 lg:h-112"
           />
         </div>
       </section>
@@ -110,5 +103,5 @@ export default function ServicesPage() {
         secondaryLabel="Learn"
       />
     </main>
-  )
+  );
 }

@@ -1,44 +1,44 @@
-import Button, { TextLink } from '../components/Button'
-import CTA from '../components/CTA'
-import { ChevronRight } from '../components/Icons'
-import imgMission from '../assets/images/about-mission.jpg'
-import imgVision from '../assets/images/about-vision.jpg'
-import imgExcellence from '../assets/images/about-excellence.jpg'
-import imgIntegrity from '../assets/images/about-integrity.jpg'
-import imgClients from '../assets/images/about-clients.jpg'
-import iconManageAccounts from '../assets/icons/icon-manage-accounts.svg'
-import iconHome from '../assets/icons/icon-home.svg'
-import iconAddBusiness from '../assets/icons/icon-add-business.svg'
-import iconWebAsset from '../assets/icons/icon-web-asset.svg'
+import Button, { TextLink } from "../components/Button";
+import CTA from "../components/CTA";
+import { ChevronRight } from "../components/Icons";
+import imgMission from "../assets/images/about-mission.jpg";
+import imgVision from "../assets/images/about-vision.jpg";
+import imgExcellence from "../assets/images/about-excellence.jpg";
+import imgIntegrity from "../assets/images/about-integrity.jpg";
+import imgClients from "../assets/images/about-clients.jpg";
+import iconManageAccounts from "../assets/icons/icon-manage-accounts.svg";
+import iconHome from "../assets/icons/icon-home.svg";
+import iconAddBusiness from "../assets/icons/icon-add-business.svg";
+import iconWebAsset from "../assets/icons/icon-web-asset.svg";
 
 const STORY = [
-  'Ivy Gaze was founded on a simple but powerful belief: people deserve peace of mind knowing that the places they live, work, invest in, and care about are professionally maintained, protected, and managed.',
-  'We don’t see our work as a list of tasks, we see it as a responsibility. We are not simply maintaining properties; we are protecting investments. We are not simply managing facilities; we are enabling productivity. We are not simply cleaning environments; we are improving lives.',
-  'Today, Ivy Gaze operates as an integrated property care, facility management, environmental services, waste management, grounds maintenance, and workforce Solutions Company, serving government agencies, corporations, institutions, residential communities, and diaspora property owners across the United States and Nigeria.',
-]
+  "Ivy Gaze was founded on a simple but powerful belief: people deserve peace of mind knowing that the places they live, work, invest in, and care about are professionally maintained, protected, and managed.",
+  "We don’t see our work as a list of tasks, we see it as a responsibility. We are not simply maintaining properties; we are protecting investments. We are not simply managing facilities; we are enabling productivity. We are not simply cleaning environments; we are improving lives.",
+  "Today, Ivy Gaze operates as an integrated property care, facility management, environmental services, waste management, grounds maintenance, and workforce Solutions Company, serving government agencies, corporations, institutions, residential communities, and diaspora property owners across the United States and Nigeria.",
+];
 
 const CLIENTS = [
   {
     icon: iconManageAccounts,
-    title: 'Government and corporate',
-    text: 'Compliance-grade service for institutions that demand accountability',
+    title: "Government and corporate",
+    text: "Compliance-grade service for institutions that demand accountability",
   },
   {
     icon: iconHome,
-    title: 'Residential homeowners',
-    text: 'Your home deserves the same care we give to institutions',
+    title: "Residential homeowners",
+    text: "Your home deserves the same care we give to institutions",
   },
   {
     icon: iconAddBusiness,
-    title: 'Real estate and business',
-    text: 'Developers and managers who need one partner, not many',
+    title: "Real estate and business",
+    text: "Developers and managers who need one partner, not many",
   },
   {
     icon: iconWebAsset,
-    title: 'Diaspora property owners',
-    text: 'Real-time reporting and trustworthy hands on your Nigerian assets',
+    title: "Diaspora property owners",
+    text: "Real-time reporting and trustworthy hands on your Nigerian assets",
   },
-]
+];
 
 // Shared eyebrow + heading block used by the white sections.
 function SectionTitle({ tagline, heading, subheading }) {
@@ -52,7 +52,7 @@ function SectionTitle({ tagline, heading, subheading }) {
         <p className="font-body text-lg leading-[1.5]">{subheading}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default function About() {
@@ -107,7 +107,7 @@ export default function About() {
                 className="h-56 w-full object-cover sm:h-auto sm:w-1/2"
               />
               <div className="flex flex-col justify-center gap-6 bg-ivy-cream p-6 sm:w-1/2">
-                <h3 className="font-heading text-[28px] font-medium leading-[1.2] tracking-[-0.01em] text-ink sm:text-[36px]">
+                <h3 className="font-heading text-[28px] text-ivy-green font-bold leading-[1.2] tracking-[-0.01em] sm:text-[36px]">
                   Our Mission
                 </h3>
                 <p className="font-body text-base leading-[1.5] text-ink">
@@ -128,7 +128,7 @@ export default function About() {
                 className="h-56 w-full object-cover sm:h-auto sm:w-1/2"
               />
               <div className="flex flex-col justify-center gap-6 bg-ivy-cream p-6 sm:w-1/2">
-                <h3 className="font-heading text-[28px] font-medium leading-[1.2] tracking-[-0.01em] text-ink sm:text-[36px]">
+                <h3 className="font-heading text-[28px] text-ivy-green font-bold leading-[1.2] tracking-[-0.01em] sm:text-[36px]">
                   Our Vision
                 </h3>
                 <div className="flex flex-col gap-2 text-ink">
@@ -307,5 +307,5 @@ export default function About() {
         secondaryLabel="Contact"
       />
     </main>
-  )
+  );
 }

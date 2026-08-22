@@ -1,47 +1,47 @@
-import { useState } from 'react'
-import starsIcon from '../assets/icons/stars.svg'
-import avatarSarah from '../assets/images/avatar-sarah.png'
-import avatarAde from '../assets/images/avatar-ade.png'
-import { ArrowLeft, ArrowRight } from './Icons'
+import { useState } from "react";
+import starsIcon from "../assets/icons/stars.svg";
+import avatarSarah from "../assets/images/avatar-sarah.png";
+import avatarAde from "../assets/images/avatar-ade.png";
+import { ArrowLeft, ArrowRight } from "./Icons";
 
 const TESTIMONIALS = [
   {
     quote:
-      'Ivy Gaze transformed how we manage our facilities across twelve locations. Their real-time reporting gives us the visibility we need to stay compliant.',
-    name: 'Sarah Chen',
-    role: 'Facilities director, Fortune 500 company',
+      "Living abroad, I needed someone I could trust completely with my property back home. Ivy Gaze's reporting keeps me informed every step of the way, so I don't have to worry.",
+    name: "Sarah Chen",
+    role: "Diaspora Property Owner",
     avatar: avatarSarah,
   },
   {
     quote:
       "I manage three properties in Lagos from New York. Knowing my buildings are inspected weekly and reported digitally gives me peace of mind I couldn't get before.",
-    name: 'Ade Okafor',
-    role: 'Diaspora property owner, Nigeria',
+    name: "Ade Okafor",
+    role: "Diaspora property owner, Nigeria",
     avatar: avatarAde,
   },
   {
     quote:
       "Their teams show up on schedule and leave detailed digital reports after every visit. It's the most reliable service partner we've worked with.",
-    name: 'Michael Torres',
-    role: 'Operations manager, Regional bank',
+    name: "Michael Torres",
+    role: "Operations manager, Regional bank",
     avatar: null,
   },
   {
     quote:
-      'As a diaspora investor, transparency was everything. The weekly inspection photos and reports let me trust what is happening from thousands of miles away.',
-    name: 'Chidinma Eze',
-    role: 'Property investor, Abuja',
+      "As a diaspora investor, transparency was everything. The weekly inspection photos and reports let me trust what is happening from thousands of miles away.",
+    name: "Chidinma Eze",
+    role: "Property investor, Abuja",
     avatar: null,
   },
-]
+];
 
-const PER_PAGE = 2
+const PER_PAGE = 2;
 
 function Avatar({ testimonial }) {
   const initials = testimonial.name
-    .split(' ')
+    .split(" ")
     .map((n) => n[0])
-    .join('')
+    .join("");
   return testimonial.avatar ? (
     <img
       src={testimonial.avatar}
@@ -52,16 +52,16 @@ function Avatar({ testimonial }) {
     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ivy-green font-sans text-base font-semibold text-white">
       {initials}
     </div>
-  )
+  );
 }
 
 export default function Testimonials() {
-  const [page, setPage] = useState(0)
-  const pages = Math.ceil(TESTIMONIALS.length / PER_PAGE)
-  const start = page * PER_PAGE
-  const visible = TESTIMONIALS.slice(start, start + PER_PAGE)
+  const [page, setPage] = useState(0);
+  const pages = Math.ceil(TESTIMONIALS.length / PER_PAGE);
+  const start = page * PER_PAGE;
+  const visible = TESTIMONIALS.slice(start, start + PER_PAGE);
 
-  const go = (dir) => setPage((p) => (p + dir + pages) % pages)
+  const go = (dir) => setPage((p) => (p + dir + pages) % pages);
 
   return (
     <section className="bg-white px-6 py-16 md:px-16 md:py-28">
@@ -111,7 +111,7 @@ export default function Testimonials() {
                   aria-label={`Go to slide ${i + 1}`}
                   onClick={() => setPage(i)}
                   className={`h-2 w-2 rounded-full transition-colors ${
-                    i === page ? 'bg-ink' : 'bg-ink/20'
+                    i === page ? "bg-ink" : "bg-ink/20"
                   }`}
                 />
               ))}
@@ -136,5 +136,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  )
+  );
 }
