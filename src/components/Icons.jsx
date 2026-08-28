@@ -136,3 +136,19 @@ export function Whatsapp({ className = '', size = 24 }) {
     </svg>
   )
 }
+
+// Material Symbols "play_arrow" — the glyph inside the video play affordance.
+export function Play({ className = '', size = 24 }) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M8 5v14l11-7L8 5Z" fill="currentColor" />
+    </svg>
+  )
+}

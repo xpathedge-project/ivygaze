@@ -7,7 +7,14 @@ import { ArrowLeft, ArrowRight } from './Icons'
 // the next one peeking past the right edge, so the track is a flex row that
 // slides by one slide-width plus the gap. Slides keep their 16:9 ratio and the
 // track is clipped by an overflow wrapper that runs to the viewport edge.
-export default function Carousel({ images, className = '', label = 'Gallery' }) {
+export default function Carousel({
+  images,
+  className = '',
+  label = 'Gallery',
+  // Slide box ratio. The Figma frames are 1280x720 on /portfolio and the Dallas
+  // case study, and 1280x863 on the Midland one.
+  aspect = 'aspect-video',
+}) {
   const [index, setIndex] = useState(0)
   const count = images.length
   const go = (dir) => setIndex((i) => (i + dir + count) % count)
@@ -30,7 +37,7 @@ export default function Carousel({ images, className = '', label = 'Gallery' }) 
               <img
                 src={img.src}
                 alt={img.alt}
-                className="aspect-video w-full object-cover"
+                className={`${aspect} w-full object-cover`}
               />
             </li>
           ))}

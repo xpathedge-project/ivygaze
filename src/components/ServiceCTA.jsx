@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import Button from './Button'
+import { Link } from "react-router-dom";
+import Button from "./Button";
 
 // "Ready to protect your property?" — appears twice in the Figma file: as a
 // rounded green card at the bottom of the Services page (card), and flat on the
@@ -10,19 +10,19 @@ export default function ServiceCTA({
   card = false,
   secondaryLabel,
 }) {
-  const lines = Array.isArray(body) ? body : [body]
+  const lines = Array.isArray(body) ? body : [body];
 
   return (
     <section
       className={
         card
-          ? 'bg-white px-6 pb-16 md:px-16 md:pb-28'
-          : 'bg-ivy-green-darkest px-6 pb-16 md:px-16 md:pb-28'
+          ? "bg-white px-6 pb-16 md:px-16 md:pb-28"
+          : "bg-ivy-green-darkest px-6 pb-16 md:px-16 md:pb-28"
       }
     >
       <div
         className={`mx-auto flex max-w-[1280px] flex-col items-center px-6 py-16 text-center md:px-16 md:pt-24 md:pb-28 ${
-          card ? 'rounded-[60px] bg-ivy-green' : ''
+          card ? "rounded-[60px] bg-ivy-green" : ""
         }`}
       >
         <div className="flex max-w-[768px] flex-col items-center gap-8">
@@ -41,7 +41,7 @@ export default function ServiceCTA({
               Book
             </Button>
             {secondaryLabel && (
-              <Button as={Link} to="/services" variant="ghostWhite">
+              <Button as={Link} to="/about" variant="ghostWhite">
                 {secondaryLabel}
               </Button>
             )}
@@ -49,5 +49,5 @@ export default function ServiceCTA({
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -34,12 +34,26 @@ import subWaste2 from "../assets/images/subservices/waste-management-2.png";
 import subGrounds1 from "../assets/images/subservices/grounds-maintenance-1.png";
 import subGrounds2 from "../assets/images/subservices/grounds-maintenance-2.png";
 
-import work1 from "../assets/images/portfolio/work-1.png";
-import work2 from "../assets/images/portfolio/work-2.png";
-import work3 from "../assets/images/portfolio/work-3.png";
-import projectDallas from "../assets/images/portfolio/city-of-dallas.png";
-import projectDallas1 from "../assets/images/portfolio/city-of-dallas-1.png";
-import projectDallas2 from "../assets/images/portfolio/city-of-dallas-2.png";
+// "Our work" carousel on /portfolio. The client ships these as s<slide>i<image>
+// — one carousel so far (s1), eleven frames, all 2000x1000.
+import s1i1 from "../assets/images/portfolio/s1i1.jpg";
+import s1i2 from "../assets/images/portfolio/s1i2.jpg";
+import s1i3 from "../assets/images/portfolio/s1i3.jpg";
+import s1i4 from "../assets/images/portfolio/s1i4.jpg";
+import s1i5 from "../assets/images/portfolio/s1i5.jpg";
+import s1i6 from "../assets/images/portfolio/s1i6.jpg";
+import s1i7 from "../assets/images/portfolio/s1i7.jpg";
+import s1i8 from "../assets/images/portfolio/s1i8.jpg";
+import s1i9 from "../assets/images/portfolio/s1i9.jpg";
+import s1i10 from "../assets/images/portfolio/s1i10.jpg";
+import s1i11 from "../assets/images/portfolio/s1i11.jpg";
+
+// Case-study carousels, one folder per project.
+import dallas1 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (1).jpg";
+import dallas2 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (2).jpg";
+import midlandBefore from "../assets/images/midland/Before Project Carousel.jpeg";
+import midlandAfter from "../assets/images/midland/After Project Carousel.jpeg";
+import midlandCover from "../assets/images/midland/City of midland Before 1 (cover Image).jfif";
 
 // Slugs, order and imagery are the same in both markets, so they live outside
 // the region blocks. SERVICE_ORDER drives the six-card grid on /services.
@@ -90,9 +104,9 @@ export const SERVICE_MEDIA = {
 // both markets (they are a record of work done, not a regional offer), so this
 // sits outside the region blocks.
 //
-// A project renders as: green header, title, the `facts` table, then `blocks`
-// in order. A block is either prose or a carousel, which is what lets the
-// Figma layout alternate text → gallery → text → gallery.
+// /portfolio shows the "Our work" carousel, then one feature band (copy beside
+// the site video). /portfolio/:slug is the case-study subpage, which — as the
+// Figma frame does — lists every project in order: title, prose, carousel.
 // ---------------------------------------------------------------------------
 export const PORTFOLIO = {
   heroHeading: "Properties we've protected",
@@ -104,19 +118,38 @@ export const PORTFOLIO = {
 
   // Top-of-page carousel on /portfolio.
   gallery: [
-    { src: work1, alt: "Stairwell and living area of a maintained residence" },
-    { src: work2, alt: "Interior of a property under Ivy Gaze care" },
-    { src: work3, alt: "Commercial site serviced by an Ivy Gaze crew" },
+    { src: s1i1, alt: "Open-plan kitchen and dining room of a residence prepared for handover" },
+    { src: s1i2, alt: "Living room with a cleaned sectional, rug and styled coffee table" },
+    { src: s1i3, alt: "Kitchen and double-height living area after a turnover clean" },
+    { src: s1i4, alt: "Crew member in protective coveralls loading a roll-off dumpster" },
+    { src: s1i5, alt: "Crew in protective suits clearing debris from a gutted room" },
+    { src: s1i6, alt: "Crew bagging clutter during a heavy-duty property cleanout" },
+    { src: s1i7, alt: "Brick single-storey home with a freshly mowed front lawn" },
+    { src: s1i8, alt: "Cleared back yard with the fence line and overgrowth cut back" },
+    { src: s1i9, alt: "Ivy Gaze crew briefing in a training room before a shift" },
+    { src: s1i10, alt: "Upstairs lounge with vacuumed carpet and dressed furniture" },
+    { src: s1i11, alt: "Commercial vacuums staged in storage beside a property being secured" },
   ],
+
+  // The feature band on /portfolio. The client will supply a .mov/.mp4 to drop
+  // in here; until then `youtubeId` drives a click-to-play embed and `poster`
+  // is what the white play button sits on top of.
+  // TODO(client): replace `youtubeId` with `src: '/media/<file>.mp4'` once the
+  // real footage lands — VideoPanel prefers `src` when it is present.
+  video: {
+    youtubeId: "aqz-KE-bpKQ",
+    poster: s1i4,
+    posterAlt: "Ivy Gaze crew loading a roll-off dumpster on a job site",
+    title: "Ivy Gaze on site",
+  },
 
   projects: [
     {
       slug: "city-of-dallas",
+      // Slide ratio of this project's carousel in the Figma frame (1280x720).
+      galleryAspect: "aspect-video",
       title:
         "City of Dallas – Full Janitorial Services and Facilities Maintenance",
-      image: projectDallas,
-      imageAlt:
-        "Ivy Gaze crew cleaning vents, floors and fixtures in a municipal facility",
       facts: [
         [
           "Project Type",
@@ -124,37 +157,70 @@ export const PORTFOLIO = {
         ],
         ["Client", "City of Dallas / Dallas Water Utilities"],
       ],
-      blocks: [
+      sections: [
         {
-          type: "text",
           heading: "Challenge",
           body: "The City of Dallas required dependable janitorial and facilities maintenance support for active municipal work environments. The scope required consistent cleaning, proper waste handling, attention to detail, schedule adherence, and the ability to maintain clean, safe, and functional spaces without interrupting daily operations.",
         },
         {
-          type: "gallery",
-          images: [
-            {
-              src: projectDallas1,
-              alt: "Ivy Gaze crew servicing a municipal facility",
-            },
-          ],
-        },
-        {
-          // TODO(copy): the Figma frame shows the "Solution" label with no body
-          // text beneath it. Empty blocks are skipped at render time — drop the
-          // real copy in here when the client supplies it.
-          type: "text",
           heading: "Solution",
-          body: "",
+          body: "Ivy Gaze LLC provided full janitorial services and facilities maintenance support tailored to the needs of the City of Dallas. Our team performed routine cleaning, trash collection, waste handling, restroom and common-area maintenance, surface cleaning, and general upkeep of assigned areas. We focused on dependable staffing, quality control, safety awareness, and responsive communication to ensure the facilities remained clean, organized, and operational.",
         },
         {
-          type: "gallery",
-          images: [
-            {
-              src: projectDallas2,
-              alt: "Completed facilities maintenance work on the Dallas contract",
-            },
-          ],
+          heading: "Outcome",
+          body: "The project supported a cleaner, safer, and more professional municipal work environment. Ivy Gaze LLC demonstrated its ability to deliver reliable full-service janitorial and maintenance support for a public-sector client while maintaining professionalism, consistency, and compliance with required service standards.",
+        },
+      ],
+      gallery: [
+        {
+          src: dallas1,
+          alt: "Kitchen and dining area of a City of Dallas facility after service",
+        },
+        {
+          src: dallas2,
+          alt: "Multi-purpose hall being cleared and cleaned by the Ivy Gaze crew",
+        },
+      ],
+    },
+    {
+      slug: "city-of-midland",
+      // The Midland frame is the taller of the two (1280x863).
+      galleryAspect: "aspect-[1280/863]",
+      title:
+        "City of Midland – Mowing, Landscape Maintenance, Tree Removal, Debris Removal, and Trash Removal",
+      facts: [
+        [
+          "Project Type",
+          "Mowing, Landscape Maintenance, Tree Removal, Debris Removal, and Trash Removal",
+        ],
+        ["Client", "City of Midland"],
+      ],
+      sections: [
+        {
+          heading: "Challenge",
+          body: "The City of Midland required reliable exterior maintenance and grounds support to help preserve clean, safe, and presentable public spaces. The work involved multiple service areas, including mowing, landscape maintenance, tree removal, debris removal, trash removal, and general outdoor site upkeep. The project required consistency, safety awareness, proper field execution, and timely service delivery.",
+        },
+        {
+          heading: "Solution",
+          body: "Ivy Gaze LLC provided structured grounds maintenance and outdoor service support for the City of Midland. Our team performed mowing, landscape maintenance, tree and debris removal, trash removal, and related site maintenance activities in accordance with the project scope. We prioritized route discipline, proper equipment use, safe work practices, and attention to detail to ensure public areas were properly maintained.",
+        },
+        {
+          heading: "Outcome",
+          body: "The project helped improve the cleanliness, appearance, and safety of public-facing outdoor spaces. Ivy Gaze LLC successfully supported municipal grounds maintenance needs through dependable service delivery, consistent field performance, and professional project execution.",
+        },
+      ],
+      gallery: [
+        {
+          src: midlandCover,
+          alt: "Roadside verge in Midland before the grounds crew arrived",
+        },
+        {
+          src: midlandBefore,
+          alt: "Overgrown public lot in Midland ahead of mowing and debris removal",
+        },
+        {
+          src: midlandAfter,
+          alt: "The same Midland lot cleared, mown and free of debris",
         },
       ],
     },

@@ -1,21 +1,21 @@
-import marketGovernment from '../assets/images/market-government.png'
-import marketDiaspora from '../assets/images/market-diaspora.png'
-import Button from './Button'
+import marketGovernment from "../assets/images/market-government.png";
+import marketDiaspora from "../assets/images/market-diaspora.png";
+import Button from "./Button";
 
 const CARDS = [
   {
     image: marketGovernment,
-    alt: 'Field operations professional coordinating on site',
-    title: 'Government and Corporate Compliance',
-    text: 'Licensed, insured, and certified for federal and institutional procurement. Real-time digital reporting and GPS-tracked operations.',
+    alt: "Field operations professional coordinating on site",
+    title: "Government and Corporate Compliance",
+    text: "Licensed, insured, and certified for federal and institutional procurement. Real-time digital reporting and GPS-tracked operations.",
   },
   {
     image: marketDiaspora,
-    alt: 'Managed residential property in Nigeria',
-    title: 'Remote Property Management For Diaspora Owners',
-    text: 'Manage your Nigerian real estate from anywhere. Transparent reporting, trustworthy teams, and peace of mind across continents.',
+    alt: "Managed residential property in Nigeria",
+    title: "Remote Property Management For Diaspora Owners",
+    text: "Manage your Nigerian real estate from anywhere. Transparent reporting, trustworthy teams, and peace of mind across continents.",
   },
-]
+];
 
 export default function TwoMarkets() {
   return (
@@ -56,9 +56,9 @@ export default function TwoMarkets() {
                   </p>
                 </div>
                 <div>
-                  <Button as="a" href="#contact" variant="ghostWhite">
+                  {/* <Button as="a" href="#contact" variant="ghostWhite">
                     Explore
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </article>
@@ -66,5 +66,5 @@ export default function TwoMarkets() {
         </div>
       </div>
     </section>
-  )
+  );
 }
