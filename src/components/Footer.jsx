@@ -6,9 +6,10 @@ import iconX from '../assets/icons/social-x.svg'
 
 const SERVICE_LINKS = [
   { label: 'Property Care', to: '/services/property-care' },
-  { label: 'Facility Management', to: '/services/facility-management' },
-  { label: 'Environmental Services', to: '/services/environmental-services' },
-  { label: 'Grounds Maintenance', to: '/services/grounds-maintenance' },
+  { label: 'Facility Operations & Maintenance', to: '/services/facility-management' },
+  { label: 'Cleaning & Environmental Services', to: '/services/environmental-services' },
+  { label: 'Waste Management', to: '/services/waste-management' },
+  { label: 'Grounds & Landscape Maintenance', to: '/services/grounds-maintenance' },
   { label: 'Workforce Solutions', to: '/services/workforce-solutions' },
 ]
 const COMPANY_LINKS = [

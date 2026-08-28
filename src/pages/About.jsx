@@ -1,6 +1,14 @@
-import Button, { TextLink } from "../components/Button";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
 import CTA from "../components/CTA";
-import { ChevronRight } from "../components/Icons";
+import { Check } from "../components/Icons";
+import {
+  ABOUT,
+  BRAND_PROMISE,
+  CLIENT_EXPERIENCE,
+  VALUES,
+} from "../content/content";
+import { useContent } from "../context/RegionContext";
 import imgMission from "../assets/images/about-mission.jpg";
 import imgVision from "../assets/images/about-vision.jpg";
 import imgExcellence from "../assets/images/about-excellence.jpg";
@@ -11,33 +19,11 @@ import iconHome from "../assets/icons/icon-home.svg";
 import iconAddBusiness from "../assets/icons/icon-add-business.svg";
 import iconWebAsset from "../assets/icons/icon-web-asset.svg";
 
-const STORY = [
-  "Ivy Gaze was founded on a simple but powerful belief: people deserve peace of mind knowing that the places they live, work, invest in, and care about are professionally maintained, protected, and managed.",
-  "We don’t see our work as a list of tasks, we see it as a responsibility. We are not simply maintaining properties; we are protecting investments. We are not simply managing facilities; we are enabling productivity. We are not simply cleaning environments; we are improving lives.",
-  "Today, Ivy Gaze operates as an integrated property care, facility management, environmental services, waste management, grounds maintenance, and workforce Solutions Company, serving government agencies, corporations, institutions, residential communities, and diaspora property owners across the United States and Nigeria.",
-];
-
-const CLIENTS = [
-  {
-    icon: iconManageAccounts,
-    title: "Government and corporate",
-    text: "Compliance-grade service for institutions that demand accountability",
-  },
-  {
-    icon: iconHome,
-    title: "Residential homeowners",
-    text: "Your home deserves the same care we give to institutions",
-  },
-  {
-    icon: iconAddBusiness,
-    title: "Real estate and business",
-    text: "Developers and managers who need one partner, not many",
-  },
-  {
-    icon: iconWebAsset,
-    title: "Diaspora property owners",
-    text: "Real-time reporting and trustworthy hands on your Nigerian assets",
-  },
+const CLIENT_ICONS = [
+  iconManageAccounts,
+  iconAddBusiness,
+  iconHome,
+  iconWebAsset,
 ];
 
 // Shared eyebrow + heading block used by the white sections.
@@ -56,20 +42,17 @@ function SectionTitle({ tagline, heading, subheading }) {
 }
 
 export default function About() {
+  const { certifications, clientTypes } = useContent();
+
   return (
     <main>
       {/* Page header */}
       <section className="bg-ivy-green px-6 pt-16 pb-12 md:px-16 md:pt-28 md:pb-16">
         <div className="mx-auto flex max-w-[768px] flex-col items-center gap-6 text-center text-white">
           <h1 className="font-heading text-[40px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[48px] lg:text-h1">
-            Built on trust. Driven by standards. Defined by peace of mind.
+            {ABOUT.heroHeading}
           </h1>
-          <p className="font-body text-lg leading-[1.5]">
-            Ivy Gaze is more than a service provider, we are an integrated
-            property care, facility management, and environmental services
-            partner trusted by property owners, businesses, institutions, and
-            diaspora clients across two countries.
-          </p>
+          <p className="font-body text-lg leading-[1.5]">{ABOUT.heroBody}</p>
         </div>
       </section>
 
@@ -78,10 +61,10 @@ export default function About() {
         <div className="mx-auto max-w-[1280px]">
           <article className="flex flex-col justify-center gap-6 border border-white/20 bg-ivy-green-deep p-8 text-white md:p-12">
             <h2 className="font-heading text-[32px] font-medium leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-              The Ivy Gaze Story
+              {ABOUT.storyHeading}
             </h2>
             <div className="flex flex-col gap-6 font-body text-base leading-[1.5] md:text-h6">
-              {STORY.map((paragraph) => (
+              {ABOUT.story.map((paragraph) => (
                 <p key={paragraph.slice(0, 32)}>{paragraph}</p>
               ))}
             </div>
@@ -95,7 +78,7 @@ export default function About() {
           <SectionTitle
             tagline="Purpose"
             heading="Mission & Vision"
-            subheading="To serve those who refuse compromise on their properties"
+            subheading="One brand, two divisions, and the same standard behind both."
           />
 
           <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
@@ -111,11 +94,7 @@ export default function About() {
                   Our Mission
                 </h3>
                 <p className="font-body text-base leading-[1.5] text-ink">
-                  To protect and enhance the spaces people depend on by
-                  delivering integrated property care, facility management,
-                  environmental services, and operational support, through
-                  skilled professionals, intelligent systems, and unwavering
-                  service excellence.
+                  {ABOUT.mission}
                 </p>
               </div>
             </article>
@@ -131,14 +110,9 @@ export default function About() {
                 <h3 className="font-heading text-[28px] text-ivy-green font-bold leading-[1.2] tracking-[-0.01em] sm:text-[36px]">
                   Our Vision
                 </h3>
-                <div className="flex flex-col gap-2 text-ink">
-                  <p className="font-sans text-h5 leading-[1.4] tracking-[-0.01em]">
-                    What drives us forward
-                  </p>
-                  <p className="font-body text-base leading-[1.5]">
-                    Excellence in every service, every time, everywhere
-                  </p>
-                </div>
+                <p className="font-body text-base leading-[1.5] text-ink">
+                  {ABOUT.vision}
+                </p>
               </div>
             </article>
           </div>
@@ -151,7 +125,7 @@ export default function About() {
           <SectionTitle
             tagline="Foundation"
             heading="The Values We Work By"
-            subheading="Principles that define how we work and who we are"
+            subheading="Reliability and Innovation sit alongside these four; every value below is measured by what it changes on site."
           />
 
           <div className="flex w-full flex-col gap-8 lg:flex-row">
@@ -159,11 +133,10 @@ export default function About() {
             <article className="flex flex-col border border-ink/15 lg:w-[384px] lg:shrink-0">
               <div className="flex flex-col justify-center gap-6 bg-ivy-cream p-8">
                 <h3 className="font-heading text-[28px] font-medium leading-[1.3] tracking-[-0.01em] text-ink lg:text-[32px]">
-                  Excellence
+                  {VALUES[0].name}
                 </h3>
                 <p className="font-body text-base leading-[1.5] text-ink">
-                  Pursuing the highest standards in every service, process, and
-                  interaction.
+                  {VALUES[0].body}
                 </p>
               </div>
               <img
@@ -178,11 +151,10 @@ export default function About() {
               <article className="flex flex-col border border-ink/15 sm:flex-row lg:flex-1">
                 <div className="flex flex-col justify-center gap-6 bg-ivy-cream p-8 sm:flex-1">
                   <h3 className="font-heading text-[28px] font-medium leading-[1.3] tracking-[-0.01em] text-ink lg:text-[32px]">
-                    Integrity
+                    {VALUES[1].name}
                   </h3>
                   <p className="font-body text-base leading-[1.5] text-ink">
-                    Acting honestly, ethically, and transparently, trust earned
-                    through consistency.
+                    {VALUES[1].body}
                   </p>
                 </div>
                 <img
@@ -196,20 +168,18 @@ export default function About() {
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 <article className="flex flex-col justify-center gap-6 border border-ink/15 bg-ivy-cream p-8 lg:min-h-[218px]">
                   <h3 className="font-heading text-[28px] font-medium leading-[1.3] tracking-[-0.01em] text-ink lg:text-[32px]">
-                    Ownership
+                    {VALUES[2].name}
                   </h3>
                   <p className="font-body text-base leading-[1.5] text-ink">
-                    Taking full responsibility for every property in our care,
-                    from first visit to final report.
+                    {VALUES[2].body}
                   </p>
                 </article>
                 <article className="flex flex-col justify-center gap-6 border border-ink/15 bg-ivy-cream p-8 lg:min-h-[218px]">
                   <h3 className="font-heading text-[28px] font-medium leading-[1.3] tracking-[-0.01em] text-ink lg:text-[32px]">
-                    Customer Care
+                    {VALUES[5].name}
                   </h3>
                   <p className="font-body text-base leading-[1.5] text-ink">
-                    Placing clients at the centre of every decision and service
-                    experience
+                    {VALUES[5].body}
                   </p>
                 </article>
               </div>
@@ -220,22 +190,80 @@ export default function About() {
 
       {/* Promise */}
       <section className="bg-ivy-green px-6 py-16 md:px-16 md:py-28">
-        <div className="mx-auto flex max-w-[768px] flex-col items-center gap-8 text-center text-white">
-          <div className="flex flex-col items-center gap-4">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 text-white lg:gap-20">
+          <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
             <p className="font-sans text-base font-semibold">Promise</p>
-            <div className="flex flex-col gap-6">
-              <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-                What we deliver, always
-              </h2>
-              <p className="font-body text-lg leading-[1.5]">
-                “Protecting properties. Preserving value. Delivering peace of
-                mind.”
-              </p>
-            </div>
+            <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
+              {BRAND_PROMISE.heading}
+            </h2>
+            <p className="font-body text-lg leading-[1.5]">
+              {BRAND_PROMISE.intro}
+            </p>
           </div>
-          <Button as="a" href="#contact" variant="ghostWhite">
-            Learn More
+          <ul className="grid w-full max-w-[1024px] grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2">
+            {BRAND_PROMISE.items.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <Check size={20} className="mt-1 shrink-0 text-ivy-gold" />
+                <span className="font-body text-base leading-[1.5]">{item}</span>
+              </li>
+            ))}
+          </ul>
+          <Button as={Link} to="/contact" variant="ghostWhite">
+            Talk to Our Team
           </Button>
+        </div>
+      </section>
+
+      {/* Certifications & standards — the one About section the deck splits by
+          market. In the US it lists real certifications; in Nigeria it lists the
+          standards we hold ourselves to, with registrations and permits left as
+          placeholders until they are formally in hand. */}
+      <section className="bg-white px-6 py-16 md:px-16 md:py-28">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:gap-20">
+          <SectionTitle
+            tagline="Standards"
+            heading={certifications.heading}
+            subheading={certifications.body}
+          />
+          <ul className="grid w-full max-w-[1024px] grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2">
+            {certifications.items.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <Check size={20} className="mt-1 shrink-0 text-ivy-green" />
+                <span className="font-body text-base leading-[1.5] text-ink">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* How we want every client to feel — deck §3.6 */}
+      <section className="bg-white px-6 pb-16 md:px-16 md:pb-28">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:gap-20">
+          <SectionTitle
+            tagline="Experience"
+            heading={CLIENT_EXPERIENCE.heading}
+            subheading="Five feelings, and the concrete thing we do to create each one."
+          />
+          <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {CLIENT_EXPERIENCE.rows.map(([feeling, meaning, how]) => (
+              <article
+                key={feeling}
+                className="flex flex-col gap-3 border border-ink/15 bg-ivy-cream p-8"
+              >
+                <h3 className="font-heading text-h5 font-medium leading-[1.4] tracking-[-0.01em] text-ivy-green">
+                  {feeling}
+                </h3>
+                <p className="font-body text-base leading-[1.5] text-ink">
+                  {meaning}
+                </p>
+                <p className="font-body text-sm leading-[1.5] text-ink/70">
+                  {how}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -245,18 +273,18 @@ export default function About() {
           <SectionTitle
             tagline="Clients"
             heading="Who we serve"
-            subheading="From government agencies to families abroad, we handle it all"
+            subheading="From procurement officers running competitive bids to owners protecting a property they cannot personally check on."
           />
 
           <div className="flex w-full flex-col gap-8 lg:flex-row">
             {/* Client type cards */}
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:w-[640px] lg:shrink-0">
-              {CLIENTS.map((client) => (
+              {clientTypes.map((client, i) => (
                 <article
                   key={client.title}
                   className="flex flex-col gap-4 border border-ink/15 bg-ivy-cream p-6"
                 >
-                  <img src={client.icon} alt="" className="h-12 w-12" />
+                  <img src={CLIENT_ICONS[i]} alt="" className="h-12 w-12" />
                   <div className="flex flex-col gap-2 text-ink">
                     <h3 className="font-heading text-h5 font-medium leading-[1.4] tracking-[-0.01em]">
                       {client.title}
@@ -279,20 +307,17 @@ export default function About() {
               <div className="flex flex-1 flex-col justify-center gap-8 bg-ivy-cream p-8 lg:p-12">
                 <div className="flex flex-col gap-6 text-ink">
                   <h3 className="font-heading text-[28px] font-medium leading-[1.4] tracking-[-0.01em] lg:text-[32px]">
-                    Who we serve
+                    Trusted by the People Who Can&rsquo;t Afford to Take Chances
                   </h3>
                   <p className="font-body text-base leading-[1.5]">
-                    From government agencies to families abroad, we handle it
-                    all
+                    Tell us your sector and what you are dealing with. We will
+                    point you at the right division and the right conversation.
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-6">
-                  <Button as="a" href="#contact" variant="cream">
-                    Explore
+                  <Button as={Link} to="/contact" variant="cream">
+                    Talk to Our Team
                   </Button>
-                  <TextLink className="text-ink">
-                    <ChevronRight size={24} />
-                  </TextLink>
                 </div>
               </div>
             </article>
@@ -301,10 +326,8 @@ export default function About() {
       </section>
 
       <CTA
-        title="Ready to protect what matters"
-        text="Let's discuss how Ivy Gaze can serve your property and preserve its value."
-        primaryLabel="Book"
-        secondaryLabel="Contact"
+        title="Let's Talk About What Your Property Deserves"
+        text="Whether you manage a single facility, a portfolio across two continents, or a waste stream that should be doing more than going to landfill: Ivy Gaze has the people, the systems and the standards to become your most trusted partner."
       />
     </main>
   );

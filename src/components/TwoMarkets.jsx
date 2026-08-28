@@ -1,21 +1,20 @@
 import marketGovernment from "../assets/images/market-government.png";
 import marketDiaspora from "../assets/images/market-diaspora.png";
-import Button from "./Button";
+import { MARKETS } from "../content/content";
 
-const CARDS = [
-  {
-    image: marketGovernment,
-    alt: "Field operations professional coordinating on site",
-    title: "Government and Corporate Compliance",
-    text: "Licensed, insured, and certified for federal and institutional procurement. Real-time digital reporting and GPS-tracked operations.",
+// Both markets are shown in full, in both markets. That is deliberate: the deck
+// (§3.7, §15.2) wants a visitor to be able to see the other market on purpose
+// rather than by accident, and to see plainly that what each one offers differs.
+const CARD_IMAGES = {
+  us: {
+    src: marketGovernment,
+    alt: "Field operations professional coordinating on a US site",
   },
-  {
-    image: marketDiaspora,
+  ng: {
+    src: marketDiaspora,
     alt: "Managed residential property in Nigeria",
-    title: "Remote Property Management For Diaspora Owners",
-    text: "Manage your Nigerian real estate from anywhere. Transparent reporting, trustworthy teams, and peace of mind across continents.",
   },
-];
+};
 
 export default function TwoMarkets() {
   return (
@@ -23,27 +22,25 @@ export default function TwoMarkets() {
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:gap-20">
         {/* Section title */}
         <div className="flex max-w-[768px] flex-col items-center gap-4 text-center text-white">
-          <p className="font-sans text-base font-semibold">Global</p>
+          <p className="font-sans text-base font-semibold">{MARKETS.tagline}</p>
           <div className="flex flex-col gap-6">
             <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-              Built For Two Markets
+              {MARKETS.heading}
             </h2>
-            <p className="font-body text-lg leading-[1.5]">
-              The same standards, adapted to where you are.
-            </p>
+            <p className="font-body text-lg leading-[1.5]">{MARKETS.body}</p>
           </div>
         </div>
 
         {/* Cards */}
         <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
-          {CARDS.map((c) => (
+          {MARKETS.cards.map((c) => (
             <article
-              key={c.title}
+              key={c.region}
               className="flex flex-col overflow-hidden border border-white/20 bg-ivy-green-deep"
             >
               <img
-                src={c.image}
-                alt={c.alt}
+                src={CARD_IMAGES[c.region].src}
+                alt={CARD_IMAGES[c.region].alt}
                 className="aspect-square w-full rounded-b-[120px] rounded-tr-[104px] object-cover sm:rounded-b-[180px] sm:rounded-tr-[160px] lg:rounded-b-[242px] lg:rounded-tr-[208px]"
               />
               <div className="flex flex-col gap-6 px-6 pt-10 pb-8 text-white sm:px-12 sm:pr-20">

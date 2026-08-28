@@ -14,7 +14,13 @@ import {
   Pin,
   Whatsapp,
 } from '../components/Icons'
-import { COVERAGE, FAQS, SERVICE_ORDER, TIMELINE } from '../content/content'
+import {
+  COVERAGE,
+  DIVISION_OPTIONS,
+  FAQS,
+  SERVICE_ORDER,
+  TIMELINE,
+} from '../content/content'
 import { useContent } from '../context/RegionContext'
 
 const TIMELINE_ICONS = {
@@ -42,10 +48,10 @@ function BookingForm() {
           <Check size={56} className="text-ivy-green" />
         </div>
         <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-ivy-green-darkest">
-          Request Confirmed
+          {contact.confirmHeading}
         </h2>
-        <p className="font-body text-lg leading-[1.5] text-ink">
-          Thank you for trusting IVY Gaze
+        <p className="max-w-[520px] font-body text-lg leading-[1.5] text-ink">
+          {contact.confirmBody}
         </p>
       </div>
     )
@@ -89,12 +95,28 @@ function BookingForm() {
       />
       <select
         className={FIELD_CLASS}
-        name="service"
+        required
+        name="division"
         defaultValue=""
-        aria-label="Service"
+        aria-label="Division"
       >
         <option value="" disabled>
-          Select a Service
+          Which division do you need?
+        </option>
+        {DIVISION_OPTIONS.map((option) => (
+          <option key={option} value={option} className="text-ink">
+            {option}
+          </option>
+        ))}
+      </select>
+      <select
+        className={FIELD_CLASS}
+        name="service"
+        defaultValue=""
+        aria-label="Service of interest"
+      >
+        <option value="" disabled>
+          Service of interest (optional)
         </option>
         {SERVICE_ORDER.map((slug) => (
           <option key={slug} value={slug} className="text-ink">
@@ -167,14 +189,14 @@ function TimelineRail() {
   )
 }
 
-// Desktop rows: the section intro fills the first left-hand slot, then the four
-// cards alternate right / left / right / left down the rail, as in the design.
-const TIMELINE_ROWS = [
-  { left: 'intro', right: TIMELINE[0] },
-  { left: TIMELINE[1], right: null },
-  { left: null, right: TIMELINE[2] },
-  { left: TIMELINE[3], right: null },
-]
+// Desktop rows: the section intro fills the first left-hand slot, then the
+// cards alternate right / left / right / … down the rail, as in the design.
+// Derived from TIMELINE so the deck can add or drop a step without this
+// layout needing to be rewritten.
+const TIMELINE_ROWS = TIMELINE.map((step, i) => ({
+  left: i === 0 ? 'intro' : i % 2 === 1 ? step : null,
+  right: i === 0 ? step : i % 2 === 0 ? step : null,
+}))
 
 function ProcessTimeline() {
   return (
@@ -220,7 +242,8 @@ function TimelineIntro() {
             What happens next
           </h2>
           <p className="font-body text-lg leading-[1.5]">
-            We confirm your booking and answer any questions you have.
+            We confirm your request within 24 business hours, then assess,
+            propose, deliver and report.
           </p>
         </div>
       </div>
@@ -319,8 +342,7 @@ export default function Contact() {
                   Prefer to talk first?
                 </h2>
                 <p className="font-body text-lg leading-[1.5]">
-                  Call or email us directly. We&rsquo;re here to discuss your
-                  needs.
+                  {contact.talkFirst}
                 </p>
               </div>
             </div>

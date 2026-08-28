@@ -3,7 +3,12 @@ import servicesHero from "../assets/images/services/serviceheader.png";
 import PageHeader from "../components/PageHeader";
 import ServiceCTA from "../components/ServiceCTA";
 import { ChevronRight } from "../components/Icons";
-import { SERVICE_MEDIA, SERVICE_ORDER } from "../content/content";
+import {
+  DIVISIONS,
+  SERVICE_DIVISION,
+  SERVICE_MEDIA,
+  SERVICE_ORDER,
+} from "../content/content";
 import { useContent } from "../context/RegionContext";
 
 function ServiceCard({ slug, service, media }) {
@@ -11,6 +16,9 @@ function ServiceCard({ slug, service, media }) {
     <article className="flex flex-col">
       <div className="flex flex-1 flex-col justify-center gap-7 bg-ivy-green-deep p-8">
         <div className="flex flex-col gap-4 text-white">
+          <p className="font-sans text-sm font-semibold tracking-[0.02em] text-ivy-gold uppercase">
+            {DIVISIONS[SERVICE_DIVISION[slug]].name}
+          </p>
           <h3 className="font-heading text-[26px] font-semibold leading-[1.2] tracking-[-0.01em]">
             {service.name}
           </h3>

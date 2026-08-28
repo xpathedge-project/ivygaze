@@ -19,7 +19,7 @@ export default function Stats() {
             <p className="font-sans text-base font-semibold text-ink">Impact</p>
             <div className="flex flex-col gap-6 text-ink">
               <h2 className="font-heading text-[32px] font-medium leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-                Numbers that speak for themselves
+                {stats.heading}
               </h2>
               <p className="font-body text-lg leading-[1.5]">{stats.body}</p>
             </div>

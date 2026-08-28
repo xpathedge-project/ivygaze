@@ -1,65 +1,28 @@
 import { useState } from "react";
 import starsIcon from "../assets/icons/stars.svg";
-import avatarSarah from "../assets/images/avatar-sarah.png";
-import avatarAde from "../assets/images/avatar-ade.png";
+import { TESTIMONIALS } from "../content/content";
 import { ArrowLeft, ArrowRight } from "./Icons";
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "Living abroad, I needed someone I could trust completely with my property back home. Ivy Gaze's reporting keeps me informed every step of the way, so I don't have to worry.",
-    name: "Sarah Chen",
-    role: "Diaspora Property Owner",
-    avatar: avatarSarah,
-  },
-  {
-    quote:
-      "I manage three properties in Lagos from New York. Knowing my buildings are inspected weekly and reported digitally gives me peace of mind I couldn't get before.",
-    name: "Ade Okafor",
-    role: "Diaspora property owner, Nigeria",
-    avatar: avatarAde,
-  },
-  {
-    quote:
-      "Their teams show up on schedule and leave detailed digital reports after every visit. It's the most reliable service partner we've worked with.",
-    name: "Michael Torres",
-    role: "Operations manager, Regional bank",
-    avatar: null,
-  },
-  {
-    quote:
-      "As a diaspora investor, transparency was everything. The weekly inspection photos and reports let me trust what is happening from thousands of miles away.",
-    name: "Chidinma Eze",
-    role: "Property investor, Abuja",
-    avatar: null,
-  },
-];
 
 const PER_PAGE = 2;
 
-function Avatar({ testimonial }) {
-  const initials = testimonial.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("");
-  return testimonial.avatar ? (
-    <img
-      src={testimonial.avatar}
-      alt={testimonial.name}
-      className="h-14 w-14 shrink-0 rounded-full object-cover"
+// The deck retains these quotes as placeholders pending written client
+// approval of the wording, the name and the title, so there is no photo to
+// show — a neutral mark stands in until real attributions arrive.
+function Avatar() {
+  return (
+    <div
+      aria-hidden="true"
+      className="h-14 w-14 shrink-0 rounded-full bg-ivy-green/15"
     />
-  ) : (
-    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ivy-green font-sans text-base font-semibold text-white">
-      {initials}
-    </div>
   );
 }
 
 export default function Testimonials() {
   const [page, setPage] = useState(0);
-  const pages = Math.ceil(TESTIMONIALS.length / PER_PAGE);
+  const items = TESTIMONIALS.items;
+  const pages = Math.ceil(items.length / PER_PAGE);
   const start = page * PER_PAGE;
-  const visible = TESTIMONIALS.slice(start, start + PER_PAGE);
+  const visible = items.slice(start, start + PER_PAGE);
 
   const go = (dir) => setPage((p) => (p + dir + pages) % pages);
 
@@ -69,18 +32,16 @@ export default function Testimonials() {
         {/* Section title */}
         <div className="flex max-w-[768px] flex-col gap-6 text-ink">
           <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] sm:text-[40px] lg:text-h2">
-            Real stories
+            {TESTIMONIALS.heading}
           </h2>
-          <p className="font-sans text-lg leading-[1.5]">
-            Hear from clients who trust us with what matters most.
-          </p>
+          <p className="font-sans text-lg leading-[1.5]">{TESTIMONIALS.body}</p>
         </div>
 
         {/* Slider */}
         <div className="flex flex-col gap-12">
           <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2">
             {visible.map((t) => (
-              <figure key={t.name} className="flex flex-col gap-8">
+              <figure key={t.quote.slice(0, 32)} className="flex flex-col gap-8">
                 <img
                   src={starsIcon}
                   alt="5 out of 5 stars"
@@ -92,7 +53,7 @@ export default function Testimonials() {
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <figcaption className="flex items-center gap-5">
-                  <Avatar testimonial={t} />
+                  <Avatar />
                   <div className="flex flex-col font-sans text-base leading-[1.5] text-ink">
                     <span className="font-semibold">{t.name}</span>
                     <span>{t.role}</span>

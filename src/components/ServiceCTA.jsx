@@ -8,6 +8,7 @@ export default function ServiceCTA({
   heading,
   body,
   card = false,
+  primaryLabel = "Book",
   secondaryLabel,
 }) {
   const lines = Array.isArray(body) ? body : [body];
@@ -38,7 +39,7 @@ export default function ServiceCTA({
           </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Button as={Link} to="/contact" variant="book">
-              Book
+              {primaryLabel}
             </Button>
             {secondaryLabel && (
               <Button as={Link} to="/about" variant="ghostWhite">

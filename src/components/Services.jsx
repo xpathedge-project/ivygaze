@@ -1,45 +1,28 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useContent } from '../context/RegionContext'
+import { DIVISIONS, SERVICE_DIVISION, SERVICE_ORDER } from '../content/content'
 import Button from './Button'
 
-const TABS = [
-  {
-    tab: 'Property care for every building',
-    heading: 'Cleaning and inspections that protect',
-    text: 'Cleaning, maintenance, and inspections that protect your investment.',
-    to: '/services/property-care',
-  },
-  {
-    tab: 'Facility management at scale',
-    heading: 'Operations that run without friction',
-    text: 'End-to-end facility operations, maintenance, and vendor coordination handled by one accountable team.',
-    to: '/services/facility-management',
-  },
-  {
-    tab: 'Environmental services that matter',
-    heading: 'Sustainable care for healthier spaces',
-    text: 'Responsible environmental services that keep your properties clean, safe, and compliant.',
-    to: '/services/environmental-services',
-  },
-  {
-    tab: 'Waste management done right',
-    heading: 'Waste handled responsibly, every time',
-    text: 'Reliable collection, disposal, and recycling programs tailored to your site and schedule.',
-    to: '/services/waste-management',
-  },
-  {
-    tab: 'Grounds maintenance with precision',
-    heading: 'Landscapes that make an impression',
-    text: 'Precision grounds keeping that keeps every exterior polished, green, and welcoming.',
-    to: '/services/grounds-maintenance',
-  },
-]
-
+// "One Company. Two Divisions. One Standard." (deck §2.3), rendered as the
+// tabbed panel from the Figma home page.
+//
+// The tabs are the service groups for the active market, read straight out of
+// CONTENT[region].services — so switching market swaps the copy and, where the
+// deck differs, the emphasis, without touching this file.
 export default function Services() {
   const [active, setActive] = useState(0)
-  const { homeServices } = useContent()
-  const pane = TABS[active]
+  const { homeServices, divisions, services } = useContent()
+
+  const tabs = SERVICE_ORDER.map((slug) => ({
+    slug,
+    label: services[slug].name,
+    division: DIVISIONS[SERVICE_DIVISION[slug]].name,
+    heading: services[slug].pageHeading,
+    text: services[slug].pageIntro,
+    to: `/services/${slug}`,
+  }))
+  const pane = tabs[active]
 
   return (
     <section id="services" className="bg-white px-6 pt-12 pb-16 md:px-16 md:pb-28">
@@ -49,7 +32,7 @@ export default function Services() {
           <p className="font-sans text-base font-semibold text-ink">Complete</p>
           <div className="flex flex-col gap-6">
             <h2 className="font-heading text-[32px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink sm:text-[40px] lg:text-h2">
-              Six services under one roof
+              {divisions.heading}
             </h2>
             <p className="font-body text-lg leading-[1.5] text-ink">
               {homeServices.body}
@@ -65,11 +48,11 @@ export default function Services() {
             aria-label="Services"
             className="flex w-full flex-col border-b border-ink/15 lg:max-w-[480px] lg:flex-1 lg:border-b-0 lg:border-r"
           >
-            {TABS.map((t, i) => {
+            {tabs.map((t, i) => {
               const isActive = i === active
               return (
                 <button
-                  key={t.tab}
+                  key={t.slug}
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActive(i)}
@@ -78,7 +61,7 @@ export default function Services() {
                   }`}
                 >
                   <span
-                    className={`flex items-center gap-3 font-body text-h5 leading-[1.4] tracking-[-0.01em] ${
+                    className={`flex items-center gap-3 font-body text-h6 leading-[1.4] tracking-[-0.01em] lg:text-h5 ${
                       isActive ? 'text-ink' : 'text-ink/70'
                     }`}
                   >
@@ -87,7 +70,7 @@ export default function Services() {
                         isActive ? 'bg-ivy-green' : 'bg-transparent'
                       }`}
                     />
-                    {t.tab}
+                    {t.label}
                   </span>
                 </button>
               )
@@ -97,9 +80,14 @@ export default function Services() {
           {/* Tab content */}
           <div
             role="tabpanel"
-            className="flex min-h-[360px] flex-col justify-center gap-8 p-10 lg:h-[448px] lg:w-[800px] lg:p-16"
+            className="flex min-h-[360px] flex-col justify-center gap-8 p-10 lg:h-[520px] lg:w-[800px] lg:p-16"
           >
             <div className="flex flex-col gap-6 text-ink">
+              {/* Which division this group belongs to — the deck's central point
+                  is that Ivy Gaze is two disciplines, not one service list. */}
+              <p className="font-sans text-base font-semibold text-ivy-green">
+                {pane.division}
+              </p>
               <h3 className="font-body text-[28px] leading-[1.2] tracking-[-0.01em] lg:text-h3">
                 {pane.heading}
               </h3>

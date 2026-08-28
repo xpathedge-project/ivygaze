@@ -80,11 +80,7 @@ export default function PortfolioPage() {
 
       <ProjectFeature project={PORTFOLIO.projects[0]} video={PORTFOLIO.video} />
 
-      <CTA
-        text="Let's discuss how Ivy Gaze can serve your property and preserve its value."
-        primaryLabel="Book"
-        secondaryLabel="Contact"
-      />
+      <CTA text="Every project on this page started as a conversation about a problem someone was tired of managing." />
     </main>
   );
 }

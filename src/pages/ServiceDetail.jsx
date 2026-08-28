@@ -28,7 +28,7 @@ function DetailSection({ section }) {
 
 export default function ServiceDetail() {
   const { slug } = useParams()
-  const { services } = useContent()
+  const { services, closingCta, ctas } = useContent()
   const service = services[slug]
   const media = SERVICE_MEDIA[slug]
 
@@ -84,8 +84,9 @@ export default function ServiceDetail() {
       </section>
 
       <ServiceCTA
-        heading="Ready to protect your property?"
-        body={`Request ${service.name} Information`}
+        heading={closingCta.heading}
+        body={closingCta.body}
+        primaryLabel={ctas.primary}
       />
     </main>
   )

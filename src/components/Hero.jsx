@@ -4,7 +4,7 @@ import { useContent } from '../context/RegionContext'
 import Button from './Button'
 
 export default function Hero() {
-  const { hero } = useContent()
+  const { hero, ctas } = useContent()
 
   return (
     <section id="home" className="bg-white px-6 py-16 md:px-16 md:pt-28 md:pb-16">
@@ -21,10 +21,10 @@ export default function Hero() {
           </div>
           <div className="flex flex-wrap gap-4">
             <Button as={Link} to="/contact" variant="book">
-              Book Us
+              {ctas.primary}
             </Button>
             <Button as={Link} to="/services" variant="cream">
-              View Our Services
+              {ctas.secondary}
             </Button>
           </div>
         </div>
