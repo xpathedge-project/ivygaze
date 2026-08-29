@@ -170,7 +170,7 @@ export const PORTFOLIO = {
   // TODO(client): replace `youtubeId` with `src: '/media/<file>.mp4'` once the
   // real footage lands — VideoPanel prefers `src` when it is present.
   video: {
-    youtubeId: "aqz-KE-bpKQ",
+    youtubeId: "UnRY8kVLgr4",
     poster: s1i4,
     posterAlt: "Ivy Gaze crew loading a roll-off dumpster on a job site",
     title: "Ivy Gaze on site",
@@ -576,14 +576,30 @@ export const DIVISIONS = {
     name: "Waste Management",
     tagline: "Turning Waste Into Resources.",
   },
+  cleaning: {
+    name: "Cleaning Services",
+    tagline: "Restoring Spaces to Their Best.",
+  },
+  grounds: {
+    name: "Grounds Maintenance",
+    tagline: "Enhancing Outdoor Spaces.",
+  },
+  workforce: {
+    name: "Workforce Solutions",
+    tagline: "Skilled Teams for Every Task.",
+  },
+  property: {
+    name: "Property Care",
+    tagline: "Protecting Your Investment.",
+  },
 };
 
 export const SERVICE_DIVISION = {
-  "property-care": "facility",
+  "property-care": "property",
   "facility-management": "facility",
-  "environmental-services": "facility",
-  "grounds-maintenance": "facility",
-  "workforce-solutions": "facility",
+  "environmental-services": "cleaning",
+  "grounds-maintenance": "grounds",
+  "workforce-solutions": "workforce",
   "waste-management": "waste",
 };
 
