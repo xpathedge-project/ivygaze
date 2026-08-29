@@ -50,3 +50,20 @@ body {
 .btn-soft-inset {
   box-shadow: inset 0 -2px 1px 0 rgba(0, 5, 2, 0.05);
 }
+
+/* Carousel autoplay countdown. The sweep *is* the timer — Carousel advances on
+   this animation's animationend — so freezing the animation freezes the slide,
+   and the bar can never drift out of step with the wait. */
+@keyframes carousel-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.carousel-progress {
+  transform-origin: left;
+  animation: carousel-progress linear forwards;
+}

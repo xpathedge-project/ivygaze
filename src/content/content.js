@@ -49,8 +49,15 @@ import s1i10 from "../assets/images/portfolio/s1i10.jpg";
 import s1i11 from "../assets/images/portfolio/s1i11.jpg";
 
 // Case-study carousels, one folder per project.
-import dallas1 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (1).jpg";
-import dallas2 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (2).jpg";
+// import dallas1 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (1).jpg";
+// import dallas2 from "../assets/images/dallas/CITY OF DALLAS CAROUSEL (2).jpg";
+import dallas1 from "../assets/images/dallas/s2i1.jpg";
+import dallas2 from "../assets/images/dallas/s2i2.jpg";
+import dallas3 from "../assets/images/dallas/s2i3.jpg";
+import dallas4 from "../assets/images/dallas/s2i4.jpg";
+import dallas5 from "../assets/images/dallas/s2i5.jpg";
+import dallas6 from "../assets/images/dallas/s2i6.jpg";
+import dallas8 from "../assets/images/dallas/s2i8.jpg";
 import midlandBefore from "../assets/images/midland/Before Project Carousel.jpeg";
 import midlandAfter from "../assets/images/midland/After Project Carousel.jpeg";
 import midlandCover from "../assets/images/midland/City of midland Before 1 (cover Image).jfif";
@@ -207,11 +214,31 @@ export const PORTFOLIO = {
       gallery: [
         {
           src: dallas1,
-          alt: "Kitchen and dining area of a City of Dallas facility after service",
+          alt: "Entry hallway and double-height living room left spotless after a full janitorial service",
         },
         {
           src: dallas2,
-          alt: "Multi-purpose hall being cleared and cleaned by the Ivy Gaze crew",
+          alt: "Bathroom with a wiped-down glass shower, polished vanity and cleared walk-in closet",
+        },
+        {
+          src: dallas3,
+          alt: "Dining and work area with dusted furniture, clean floors and freshly wiped surfaces",
+        },
+        {
+          src: dallas4,
+          alt: "Stairwell and hardwood entry hall after floor cleaning and detailed dusting",
+        },
+        {
+          src: dallas5,
+          alt: "Front entrance corridor with a cleaned runner, console table and swept doorway",
+        },
+        {
+          src: dallas6,
+          alt: "Double-height living room with vacuumed rugs, dusted shelving and a clean fireplace wall",
+        },
+        {
+          src: dallas8,
+          alt: "Breakfast nook and kitchen with sanitised countertops, clean appliances and mopped floors",
         },
       ],
     },
