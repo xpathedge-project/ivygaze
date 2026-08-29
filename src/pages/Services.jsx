@@ -14,12 +14,18 @@ import { useContent } from "../context/RegionContext";
 function ServiceCard({ slug, service, media }) {
   return (
     <article className="flex flex-col">
-      <div className="flex flex-1 flex-col justify-center gap-7 bg-ivy-green-deep p-8">
+      {/* The grid stretches every card in a row to one height, so the panel
+          pins its copy to the top and "More" to the bottom — centering instead
+          would float each card's stack to its own middle. */}
+      <div className="flex flex-1 flex-col justify-between gap-7 bg-ivy-green-deep p-8">
         <div className="flex flex-col gap-4 text-white">
           <p className="font-sans text-sm font-semibold tracking-[0.02em] text-ivy-gold uppercase">
             {DIVISIONS[SERVICE_DIVISION[slug]].name}
           </p>
-          <h3 className="font-heading text-[26px] font-semibold leading-[1.2] tracking-[-0.01em]">
+          {/* Two lines' worth of space from the sm breakpoint up, where cards
+              sit side by side, so a one-line name doesn't lift its body copy
+              above the neighbours'. */}
+          <h3 className="font-heading text-[26px] font-semibold leading-[1.2] tracking-[-0.01em] sm:min-h-[2lh]">
             {service.name}
           </h3>
           <p className="font-body text-sm leading-[1.5]">{service.cardBody}</p>
