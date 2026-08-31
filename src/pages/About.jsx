@@ -26,7 +26,6 @@ const CLIENT_ICONS = [
   iconWebAsset,
 ];
 
-// Shared eyebrow + heading block used by the white sections.
 function SectionTitle({ tagline, heading, subheading }) {
   return (
     <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
@@ -129,7 +128,6 @@ export default function About() {
           />
 
           <div className="flex w-full flex-col gap-8 lg:flex-row">
-            {/* Excellence — tall card with the sculpted image */}
             <article className="flex flex-col border border-ink/15 lg:w-[384px] lg:shrink-0">
               <div className="flex flex-col justify-center gap-6 bg-ivy-cream p-8">
                 <h3 className="font-heading text-[28px] font-medium leading-[1.3] tracking-[-0.01em] text-ink lg:text-[32px]">
@@ -204,7 +202,9 @@ export default function About() {
             {BRAND_PROMISE.items.map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <Check size={20} className="mt-1 shrink-0 text-ivy-gold" />
-                <span className="font-body text-base leading-[1.5]">{item}</span>
+                <span className="font-body text-base leading-[1.5]">
+                  {item}
+                </span>
               </li>
             ))}
           </ul>
@@ -214,10 +214,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Certifications & standards — the one About section the deck splits by
-          market. In the US it lists real certifications; in Nigeria it lists the
-          standards we hold ourselves to, with registrations and permits left as
-          placeholders until they are formally in hand. */}
       <section className="bg-white px-6 py-16 md:px-16 md:py-28">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:gap-20">
           <SectionTitle

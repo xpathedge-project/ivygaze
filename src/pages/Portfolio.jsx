@@ -7,9 +7,6 @@ import VideoPanel from "../components/VideoPanel";
 import CTA from "../components/CTA";
 import { PORTFOLIO } from "../content/content";
 
-// The feature band under "Our work": the site video bleeding off the left edge
-// of the viewport, copy on the right inside the page gutter. Below lg it stacks
-// video over copy so the video still reads first.
 function ProjectFeature({ project, video }) {
   const intro = project.sections[0];
 

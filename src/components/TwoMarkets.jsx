@@ -2,9 +2,6 @@ import marketGovernment from "../assets/images/market-government.png";
 import marketDiaspora from "../assets/images/market-diaspora.png";
 import { MARKETS } from "../content/content";
 
-// Both markets are shown in full, in both markets. That is deliberate: the deck
-// (§3.7, §15.2) wants a visitor to be able to see the other market on purpose
-// rather than by accident, and to see plainly that what each one offers differs.
 const CARD_IMAGES = {
   us: {
     src: marketGovernment,

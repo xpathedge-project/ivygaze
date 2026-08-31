@@ -1,12 +1,9 @@
-// The green banner that opens the Services and Portfolio pages ("Header / 64 /"
-// in Figma). The two frames differ only in vertical padding, so that is the one
-// thing callers override.
 export default function PageHeader({
   heading,
   body,
-  className = 'pt-20 pb-20 md:pt-[112px] md:pb-[112px]',
-  headingClassName = 'max-w-[768px]',
-  bodyClassName = 'max-w-[768px]',
+  className = "pt-20 pb-20 md:pt-[112px] md:pb-[112px]",
+  headingClassName = "max-w-[768px]",
+  bodyClassName = "max-w-[768px]",
 }) {
   return (
     <section className={`bg-ivy-green px-6 md:px-16 ${className}`}>
@@ -23,5 +20,5 @@ export default function PageHeader({
         </div>
       </div>
     </section>
-  )
+  );
 }

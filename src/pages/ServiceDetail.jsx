@@ -1,10 +1,8 @@
-import { Navigate, useParams } from 'react-router-dom'
-import ServiceCTA from '../components/ServiceCTA'
-import { SERVICE_MEDIA, SERVICE_ORDER } from '../content/content'
-import { useContent } from '../context/RegionContext'
+import { Navigate, useParams } from "react-router-dom";
+import ServiceCTA from "../components/ServiceCTA";
+import { SERVICE_MEDIA, SERVICE_ORDER } from "../content/content";
+import { useContent } from "../context/RegionContext";
 
-// One section of the sub-service body: a 40px heading followed by either a
-// bulleted list or a paragraph, depending on which the design uses.
 function DetailSection({ section }) {
   return (
     <div className="flex flex-col gap-6">
@@ -23,17 +21,17 @@ function DetailSection({ section }) {
         </p>
       )}
     </div>
-  )
+  );
 }
 
 export default function ServiceDetail() {
-  const { slug } = useParams()
-  const { services, closingCta, ctas } = useContent()
-  const service = services[slug]
-  const media = SERVICE_MEDIA[slug]
+  const { slug } = useParams();
+  const { services, closingCta, ctas } = useContent();
+  const service = services[slug];
+  const media = SERVICE_MEDIA[slug];
 
   if (!service || !SERVICE_ORDER.includes(slug)) {
-    return <Navigate to="/services" replace />
+    return <Navigate to="/services" replace />;
   }
 
   return (
@@ -58,7 +56,7 @@ export default function ServiceDetail() {
               key={src}
               src={src}
               alt={`${service.name} work in progress`}
-              aria-hidden={i > 0 ? 'true' : undefined}
+              aria-hidden={i > 0 ? "true" : undefined}
               className="h-[240px] w-full rounded-[47px] object-cover sm:h-[320px] lg:h-[390px]"
             />
           ))}
@@ -89,5 +87,5 @@ export default function ServiceDetail() {
         primaryLabel={ctas.primary}
       />
     </main>
-  )
+  );
 }

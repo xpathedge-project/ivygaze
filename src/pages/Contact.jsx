@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import contactOffice from '../assets/images/contact-office.png'
-import iconCall from '../assets/icons/timeline-call.svg'
-import iconCalendar from '../assets/icons/timeline-calendar.svg'
-import iconMap from '../assets/icons/timeline-map.svg'
-import iconNote from '../assets/icons/timeline-note.svg'
-import Button, { TextLink } from '../components/Button'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import contactOffice from "../assets/images/contact-office.png";
+import iconCall from "../assets/icons/timeline-call.svg";
+import iconCalendar from "../assets/icons/timeline-calendar.svg";
+import iconMap from "../assets/icons/timeline-map.svg";
+import iconNote from "../assets/icons/timeline-note.svg";
+import Button, { TextLink } from "../components/Button";
 import {
   Call,
   Check,
@@ -13,33 +13,33 @@ import {
   Mail,
   Pin,
   Whatsapp,
-} from '../components/Icons'
+} from "../components/Icons";
 import {
   COVERAGE,
   DIVISION_OPTIONS,
   FAQS,
   SERVICE_ORDER,
   TIMELINE,
-} from '../content/content'
-import { useContent } from '../context/RegionContext'
+} from "../content/content";
+import { useContent } from "../context/RegionContext";
 
 const TIMELINE_ICONS = {
   call: iconCall,
   calendar: iconCalendar,
   map: iconMap,
   note: iconNote,
-}
+};
 
-const METHOD_ICONS = { mail: Mail, whatsapp: Whatsapp, call: Call, pin: Pin }
+const METHOD_ICONS = { mail: Mail, whatsapp: Whatsapp, call: Call, pin: Pin };
 
 const FIELD_CLASS =
-  'w-full border border-white/20 bg-white/10 px-4 py-2 font-sans text-base text-white placeholder:text-white/60 focus:border-white/40 focus:outline-none'
+  "w-full border border-white/20 bg-white/10 px-4 py-2 font-sans text-base text-white placeholder:text-white/60 focus:border-white/40 focus:outline-none";
 
 // ---------------------------------------------------------------------------
 
 function BookingForm() {
-  const { contact, services } = useContent()
-  const [submitted, setSubmitted] = useState(false)
+  const { contact, services } = useContent();
+  const [submitted, setSubmitted] = useState(false);
 
   if (submitted) {
     return (
@@ -54,15 +54,15 @@ function BookingForm() {
           {contact.confirmBody}
         </p>
       </div>
-    )
+    );
   }
 
   return (
     <form
       className="mx-auto flex w-full max-w-[977px] flex-col gap-4"
       onSubmit={(e) => {
-        e.preventDefault()
-        setSubmitted(true)
+        e.preventDefault();
+        setSubmitted(true);
       }}
     >
       <input
@@ -155,7 +155,7 @@ function BookingForm() {
         </div>
       </div>
     </form>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -174,7 +174,7 @@ function TimelineCard({ step }) {
       </div>
       <p className="font-body text-lg leading-[1.5] text-ink">{step.body}</p>
     </div>
-  )
+  );
 }
 
 // The vertical rail that runs between the alternating timeline cards.
@@ -186,17 +186,13 @@ function TimelineRail() {
       <div className="size-[7px] shrink-0 rounded-full bg-ink" />
       <div className="w-[3px] flex-1 bg-ink" />
     </div>
-  )
+  );
 }
 
-// Desktop rows: the section intro fills the first left-hand slot, then the
-// cards alternate right / left / right / … down the rail, as in the design.
-// Derived from TIMELINE so the deck can add or drop a step without this
-// layout needing to be rewritten.
 const TIMELINE_ROWS = TIMELINE.map((step, i) => ({
-  left: i === 0 ? 'intro' : i % 2 === 1 ? step : null,
+  left: i === 0 ? "intro" : i % 2 === 1 ? step : null,
   right: i === 0 ? step : i % 2 === 0 ? step : null,
-}))
+}));
 
 function ProcessTimeline() {
   return (
@@ -206,7 +202,7 @@ function ProcessTimeline() {
           {TIMELINE_ROWS.map((row, i) => (
             <div key={i} className="contents">
               <div className="py-4">
-                {row.left === 'intro' ? (
+                {row.left === "intro" ? (
                   <TimelineIntro />
                 ) : (
                   row.left && <TimelineCard step={row.left} />
@@ -229,7 +225,7 @@ function ProcessTimeline() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function TimelineIntro() {
@@ -257,15 +253,11 @@ function TimelineIntro() {
         </TextLink>
       </div>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
 
-// One market in the "Where we serve" comparison: headline facts on the left,
-// the service-line checklist on the right. The 469/523 split and the 32px
-// gutter come straight from the Figma frame; the two panels are equal height
-// so the pair reads as a single band.
 function CoverageBlock({ column }) {
   return (
     <section
@@ -296,13 +288,13 @@ function CoverageBlock({ column }) {
         ))}
       </ul>
     </section>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
 
 export default function Contact() {
-  const { contact } = useContent()
+  const { contact } = useContent();
 
   return (
     <main>
@@ -371,7 +363,7 @@ export default function Contact() {
       <section className="bg-white px-6 pb-16 md:px-16 md:pb-28">
         <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {contact.methods.map((method) => {
-            const Icon = METHOD_ICONS[method.icon]
+            const Icon = METHOD_ICONS[method.icon];
             return (
               <div key={method.title} className="flex flex-col gap-4">
                 <Icon size={32} className="text-ink" />
@@ -390,7 +382,7 @@ export default function Contact() {
                   {method.link}
                 </a>
               </div>
-            )
+            );
           })}
         </div>
       </section>
@@ -409,8 +401,7 @@ export default function Contact() {
               <p className="font-body text-lg leading-[1.5]">{COVERAGE.body}</p>
             </div>
           </div>
-          {/* The two markets stack rather than sit side by side — the Figma
-              frame gives each one a full-width band 80px apart. */}
+
           <div className="flex w-full max-w-[1024px] flex-col gap-8 lg:gap-20">
             {COVERAGE.columns.map((column) => (
               <CoverageBlock key={column.region} column={column} />
@@ -460,5 +451,5 @@ export default function Contact() {
         </div>
       </section>
     </main>
-  )
+  );
 }

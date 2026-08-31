@@ -1,41 +1,50 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import iconFacebook from '../assets/icons/social-facebook.svg'
-import iconInstagram from '../assets/icons/social-instagram.svg'
-import iconX from '../assets/icons/social-x.svg'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import iconFacebook from "../assets/icons/social-facebook.svg";
+import iconInstagram from "../assets/icons/social-instagram.svg";
+import iconX from "../assets/icons/social-x.svg";
 
 const SERVICE_LINKS = [
-  { label: 'Property Care', to: '/services/property-care' },
-  { label: 'Facility Operations & Maintenance', to: '/services/facility-management' },
-  { label: 'Cleaning & Environmental Services', to: '/services/environmental-services' },
-  { label: 'Waste Management', to: '/services/waste-management' },
-  { label: 'Grounds & Landscape Maintenance', to: '/services/grounds-maintenance' },
-  { label: 'Workforce Solutions', to: '/services/workforce-solutions' },
-]
+  { label: "Property Care", to: "/services/property-care" },
+  {
+    label: "Facility Operations & Maintenance",
+    to: "/services/facility-management",
+  },
+  {
+    label: "Cleaning & Environmental Services",
+    to: "/services/environmental-services",
+  },
+  { label: "Waste Management", to: "/services/waste-management" },
+  {
+    label: "Grounds & Landscape Maintenance",
+    to: "/services/grounds-maintenance",
+  },
+  { label: "Workforce Solutions", to: "/services/workforce-solutions" },
+];
 const COMPANY_LINKS = [
-  { label: 'About Us', to: '/about' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Book Us', to: '/contact' },
-  { label: 'Contact', to: '/contact' },
-  'Certifications',
-]
+  { label: "About Us", to: "/about" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Book Us", to: "/contact" },
+  { label: "Contact", to: "/contact" },
+  "Certifications",
+];
 const SOCIAL_LINKS = [
-  { label: 'Facebook', icon: iconFacebook },
-  { label: 'Instagram', icon: iconInstagram },
-  { label: 'X', icon: iconX },
-]
-const LEGAL_LINKS = ['Privacy Policy', 'Terms of Service', 'Cookies Settings']
+  { label: "Facebook", icon: iconFacebook },
+  { label: "Instagram", icon: iconInstagram },
+  { label: "X", icon: iconX },
+];
+const LEGAL_LINKS = ["Privacy Policy", "Terms of Service", "Cookies Settings"];
 
-// Links are either plain labels (not yet routed) or { label, to } pairs.
+// Links here are plain labels
 function LinkColumn({ title, links }) {
   return (
     <div className="flex flex-col gap-4">
       <p className="font-sans text-base font-semibold text-ink">{title}</p>
       <ul className="flex flex-col">
         {links.map((l) => {
-          const { label, to } = typeof l === 'string' ? { label: l } : l
+          const { label, to } = typeof l === "string" ? { label: l } : l;
           const className =
-            'block py-2 font-sans text-sm text-ink transition-opacity hover:opacity-70'
+            "block py-2 font-sans text-sm text-ink transition-opacity hover:opacity-70";
           return (
             <li key={label}>
               {to ? (
@@ -48,15 +57,15 @@ function LinkColumn({ title, links }) {
                 </a>
               )}
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
 
   return (
     <footer className="bg-white px-6 py-20 md:px-16">
@@ -143,5 +152,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

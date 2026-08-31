@@ -53,7 +53,6 @@ export default function ServicesPage() {
 
   return (
     <main>
-      {/* Green header */}
       <PageHeader
         heading={servicesPage.heroHeading}
         body={servicesPage.heroBody}
@@ -62,7 +61,6 @@ export default function ServicesPage() {
         bodyClassName="max-w-[522px]"
       />
 
-      {/* "What we do for you" + full-bleed card image */}
       <section className="bg-white px-6 pt-20 pb-16 md:px-16 md:pt-[137px] md:pb-28">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-12 lg:gap-20">
           <div className="flex w-full max-w-[768px] flex-col items-center gap-4 text-center">

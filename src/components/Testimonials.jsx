@@ -5,9 +5,6 @@ import { ArrowLeft, ArrowRight } from "./Icons";
 
 const PER_PAGE = 2;
 
-// The deck retains these quotes as placeholders pending written client
-// approval of the wording, the name and the title, so there is no photo to
-// show — a neutral mark stands in until real attributions arrive.
 function Avatar() {
   return (
     <div
@@ -41,7 +38,10 @@ export default function Testimonials() {
         <div className="flex flex-col gap-12">
           <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2">
             {visible.map((t) => (
-              <figure key={t.quote.slice(0, 32)} className="flex flex-col gap-8">
+              <figure
+                key={t.quote.slice(0, 32)}
+                className="flex flex-col gap-8"
+              >
                 <img
                   src={starsIcon}
                   alt="5 out of 5 stars"

@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-// "Ready to protect your property?" — appears twice in the Figma file: as a
-// rounded green card at the bottom of the Services page (card), and flat on the
-// dark background at the bottom of every sub-service page (card={false}).
 export default function ServiceCTA({
   heading,
   body,

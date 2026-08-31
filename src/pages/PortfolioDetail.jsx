@@ -1,19 +1,16 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
-import Carousel from '../components/Carousel'
-import PageHeader from '../components/PageHeader'
-import CTA from '../components/CTA'
-import { ChevronRight } from '../components/Icons'
-import { PORTFOLIO } from '../content/content'
+import { Link, Navigate, useParams } from "react-router-dom";
+import Carousel from "../components/Carousel";
+import PageHeader from "../components/PageHeader";
+import CTA from "../components/CTA";
+import { ChevronRight } from "../components/Icons";
+import { PORTFOLIO } from "../content/content";
 
-// One case study: title, the Challenge / Solution / Outcome prose, then the
-// project's carousel.
-//
-// The Figma frame keeps the three labels at the body's own size and weight —
-// they are line breaks inside a single text node rather than styled headings —
-// so they are rendered that way here and marked up as <h3> for structure only.
 function CaseStudy({ project }) {
   return (
-    <section id={project.slug} className="flex scroll-mt-24 flex-col gap-12 lg:gap-16">
+    <section
+      id={project.slug}
+      className="flex scroll-mt-24 flex-col gap-12 lg:gap-16"
+    >
       <div className="flex flex-col gap-8">
         <h2 className="font-heading text-[32px] leading-[1.2] tracking-[-0.01em] text-ink sm:text-[40px] lg:text-h2">
           {project.title}
@@ -34,15 +31,15 @@ function CaseStudy({ project }) {
         aspect={project.galleryAspect}
       />
     </section>
-  )
+  );
 }
 
 export default function PortfolioDetail() {
-  const { slug } = useParams()
+  const { slug } = useParams();
 
   // An unknown slug is a bad URL rather than a page — send it back to the list.
   if (!PORTFOLIO.projects.some((p) => p.slug === slug)) {
-    return <Navigate to="/portfolio" replace />
+    return <Navigate to="/portfolio" replace />;
   }
 
   return (
@@ -59,8 +56,6 @@ export default function PortfolioDetail() {
             Back to portfolio
           </Link>
 
-          {/* The subpage lists every case study in order, as the Figma frame
-              does — the slug decides which one the visitor lands on. */}
           <div className="flex flex-col gap-16 lg:gap-28">
             {PORTFOLIO.projects.map((project) => (
               <CaseStudy key={project.slug} project={project} />
@@ -71,5 +66,5 @@ export default function PortfolioDetail() {
 
       <CTA text="Every project on this page started as a conversation about a problem someone was tired of managing." />
     </main>
-  )
+  );
 }
