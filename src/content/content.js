@@ -58,9 +58,19 @@ import dallas4 from "../assets/images/dallas/s2i4.jpg";
 import dallas5 from "../assets/images/dallas/s2i5.jpg";
 import dallas6 from "../assets/images/dallas/s2i6.jpg";
 import dallas8 from "../assets/images/dallas/s2i8.jpg";
-import midlandBefore from "../assets/images/midland/Before Project Carousel.jpeg";
-import midlandAfter from "../assets/images/midland/After Project Carousel.jpeg";
-import midlandCover from "../assets/images/midland/City of midland Before 1 (cover Image).jfif";
+// Midland ships as "COVER CAROUSEL <n>" — the number is the running order and a
+// letter suffix marks the second frame of a pair (cover/B2, 6/6B, A1/A2).
+import midlandCover from "../assets/images/midland/CITY OF MIDLAND COVER CAROUSEL.jpg";
+import midlandCoverB2 from "../assets/images/midland/CITY OF MIDLAND COVER CAROUSEL B2.jpg";
+import midland2 from "../assets/images/midland/CITY OF MIDLANDCAROUSEL 2.jpg";
+import midland3 from "../assets/images/midland/CITY OF MIDLAND COVER CAROUSEL 3.jpg";
+import midland4 from "../assets/images/midland/CITY OF MIDLAND  CAROUSEL 4.jpg";
+import midland5 from "../assets/images/midland/CITY OF MIDLAND COVER CAROUSEL 5.jpg";
+import midland6 from "../assets/images/midland/CITY OF MIDLAND CAROUSEL 6.jpg";
+import midland6b from "../assets/images/midland/CITY OF MIDLAND CAROUSEL 6 (B).jpg";
+import midlandA1 from "../assets/images/midland/CITY OF MIDLAND A1.jpg";
+import midlandA2 from "../assets/images/midland/CITY OF MIDLAND A2.jpg";
+import midlandD from "../assets/images/midland/CITY OF MIDLAND D.jpg";
 
 // Slugs, order and imagery are the same in both markets, so they live outside
 // the region blocks. SERVICE_ORDER drives the six-card grid on /services.
@@ -244,8 +254,8 @@ export const PORTFOLIO = {
     },
     {
       slug: "city-of-midland",
-      // The Midland frame is the taller of the two (1280x863).
-      galleryAspect: "aspect-[1280/863]",
+      // The new Midland frames are 2000x1000, same as Dallas.
+      galleryAspect: "aspect-video",
       title:
         "City of Midland – Mowing, Landscape Maintenance, Tree Removal, Debris Removal, and Trash Removal",
       facts: [
@@ -272,15 +282,47 @@ export const PORTFOLIO = {
       gallery: [
         {
           src: midlandCover,
-          alt: "Roadside verge in Midland before the grounds crew arrived",
+          alt: "Dead turf and a bare planting bed beside a City of Midland building before the crew arrived",
         },
         {
-          src: midlandBefore,
-          alt: "Overgrown public lot in Midland ahead of mowing and debris removal",
+          src: midlandCoverB2,
+          alt: "A city-owned lawn mown back to an even finish, photographed at dusk with the Midland skyline behind",
         },
         {
-          src: midlandAfter,
-          alt: "The same Midland lot cleared, mown and free of debris",
+          src: midland2,
+          alt: "Single-storey Midland home with its front lawn and roadside verge cut back to the kerb",
+        },
+        {
+          src: midland3,
+          alt: "Freshly cut stumps on a residential lot after tree removal and clearing",
+        },
+        {
+          src: midland4,
+          alt: "Overgrown grass running along a highway frontage ahead of mowing",
+        },
+        {
+          src: midland5,
+          alt: "The same highway frontage mown down to a clean, even finish",
+        },
+        {
+          src: midland6,
+          alt: "Municipal lawn mown and edged, photographed at night under street lighting",
+        },
+        {
+          src: midland6b,
+          alt: "A wider view of the same lawn, showing the cleared kerb line and pathway",
+        },
+        {
+          src: midlandA1,
+          alt: "Trimmed grass and clipped shrubs around the covered entrance to a city facility",
+        },
+        {
+          src: midlandA2,
+          alt: "The same facility seen from the lawn, edged along the walkway and building line",
+        },
+        {
+          src: midlandD,
+          alt: "Mown grass running along a white fence line beside a lit commercial building at night",
         },
       ],
     },
